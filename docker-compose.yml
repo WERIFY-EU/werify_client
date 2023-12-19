@@ -4,6 +4,8 @@ services:
     build: .
     ports:
       - "3002:3002"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/client_werifydb
     depends_on:
       - mongo
   mongo:
