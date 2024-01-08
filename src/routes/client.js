@@ -22,7 +22,6 @@ router.get('/home', (req, res) => {
       const storedValues = JSON.parse(storedValuesStr);
 
       // Find the email value
-      const arrayEmails = process.env.AUTHORIZAD_EMAILS.split(',');
       for (const item of storedValues) {
           if (item.pointer === "/credentialSubject/email") {
 
