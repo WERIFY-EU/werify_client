@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Data = require('../models/dataModel');
+const { Data } = require('../models/dataModel');
 const jwt = require('jsonwebtoken');
 
 router.post('/data', async (req, res) => {
@@ -9,7 +9,7 @@ router.post('/data', async (req, res) => {
     // Decoding the line breaks
     const decodedPublicKey = encodedPublicKey.replace(/\\n/g, '\n');
     try {
-        const decoded = jwt.verify(token, decodedPublicKey, { algorithms: ['ES256'] });
+        const decoded = jwt.verify(token, decodedPublicKey, { algorithms: ['ES256'], ignoreNotBefore: true });
         const newData = new Data({ data: decoded });
         await newData.save();
         res.status(201).send(newData);

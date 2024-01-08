@@ -106,11 +106,11 @@
         }
         .features section {
             width: 33.3333%;
-            padding: 0 25px 0 35px;
+            padding: 0 15px;
             box-sizing: border-box;
         }
         .features h2 {
-            font-size: 20px;
+            font-size: 24px;
             color: #333;
         }
         .features p {
@@ -127,15 +127,8 @@
             </div>
             <nav>
                 <ul>
-                    <li class="current"><a href="home">Home</a></li>
-                    <% if (sessionExists) { %>
-                        <li><a href="private_area">Private Area</a></li>
-                        <li><a href="logout">Logout</a></li>
-                    <% } else { %>
-                        <li><a href="#" onclick="redirectToRegistry()">Registry</a></li>
-                        <li><a href="#" onclick="redirectToLogin()">Login</a></li>
-                    <% } %>
-                    <!-- <li><a href="contact.html">Contact</a></li> -->
+                    <li><a href="home">Home</a></li>
+                    <li><a href="#" onclick="redirectToLogin()">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -144,31 +137,13 @@
     <div class="content">
         <div class="showcase">
             <div class="showcase-text">
-                <h1>Revolutionizing Credential Verification with SSI</h1>
-                <p>Deploying Quick Verification Points for Self-Sovereign Identity Credentials</p>
+                <h1>Welcome, <%= user.firstName %> <%= user.familyName %>!</h1>
+                <p>Congratulations on your successful registration! You are now granted access to the exclusive private area. Simply present your email credential for entry. Rest assured, your access is safeguarded by the cutting-edge Self-Sovereign Identity (SSI) technology, ensuring your privacy and security in this privileged space</p>
             </div>
 
-            <img src="/assets/img/ssi_credentials.png" alt="SSI Related Image">
+            <img src="/assets/img/registry.png" alt="Segure Registry">
 
 
-        </div>
-        <div class="features">
-            <section>
-                <h2>Multi-Credential Wallet Management</h2>
-                <p>Holders will carry multiple credentials in their wallet, issued by different issuers.</p>
-            </section>
-            <section>
-                <h2>Flexible Business Process Scheduling</h2>
-                <p>Business processes need a versatile rule scheduler to request different VCs and capture attributes.</p>
-            </section>
-            <section>
-                <h2>Dynamic Deployment of Werify Points</h2>
-                <p>High-performance Werify points must be dynamically deployed for in-person and remote processes.</p>
-            </section>
-            <section>
-                <h2>VC Integration in Business Applications</h2>
-                <p>Business applications need VC integration to perform authentication and acquire data.</p>
-            </section>
         </div>
     </div>
     
@@ -178,22 +153,3 @@
     <script src="/js/home.js"></script>
 </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Login">
-    </form>
-    <script src="/js/script.js"></script>
-</body>
-</html> -->
