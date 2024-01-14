@@ -1,7 +1,14 @@
-function redirectToLogin() {
-    window.location.href = 'https://staging.werify.eu/#/werify_point_kiosk/sultry+silicon+prance+designate+bonehead';
+async function getConfig() {
+    const response = await fetch('/config');
+    return response.json();
 }
 
-function redirectToRegistry() {
-    window.location.href = 'https://staging.werify.eu/#/werify_point_kiosk/traitor+tantrum+culinary+passport+humvee';
+async function redirectToLogin() {
+    const config = await getConfig();
+    window.location.href = config.loginUrl;
+}
+
+async function redirectToRegistry() {
+    const config = await getConfig();
+    window.location.href = config.registryUrl;
 }

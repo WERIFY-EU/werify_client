@@ -30,6 +30,15 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.json());
 app.use('/api', apiRoutes);
-app.use('/client', clientRoutes); 
+app.use('/client', clientRoutes);
+app.get('/config', (req, res) => {
+  res.json({
+      loginUrl: 'https://staging.werify.eu/#' + process.env.LOGIN_URL,
+      registryUrl: 'https://staging.werify.eu/#' + process.env.REGISTRY_URL
+  });
+});
+app.use('*', (req, res) => {
+  res.redirect('/client/home#');
+});
 
 module.exports = app;
