@@ -78,16 +78,16 @@ router.get('/registry', (req, res) => {
 
       // Find the email value
       for (const item of storedValues) {
-          if (item.pointer === "/credentialSubject/email") {
+          if (item.pointer === "/credentialSubject/email" || item.pointer === "/credentialSubject/correo-e") {
             userDetails.email = item.value.trim();
           }
-          if (item.pointer === "/credentialSubject/firstName") {
+          if (item.pointer === "/credentialSubject/firstName"  || item.pointer === "/credentialSubject/Nombre") {
             userDetails.firstName = item.value.trim();
           }
-          if (item.pointer === "/credentialSubject/familyName") {
+          if (item.pointer === "/credentialSubject/familyName"  || item.pointer === "/credentialSubject/Apellido1") {
             userDetails.familyName = item.value.trim();
           }
-          if (item.pointer === "/credentialSubject/dateOfBirth") {
+          if (item.pointer === "/credentialSubject/dateOfBirth" || item.pointer === "/credentialSubject/Apellido2") {
             userDetails.dateOfBirth = item.value.trim();
           }
       }
