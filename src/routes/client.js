@@ -62,7 +62,11 @@ router.get('/registry', (req, res) => {
     email: '', 
     firstName: '', 
     familyName: '',
-    dateOfBirth: ''
+    dateOfBirth: '',
+    DNI:'',
+    NIF_del_organismo:'',
+    Organismo:'',
+    Puesto:'',
   };
   if (token) {
     const encodedPublicKey = process.env.PUBLIC_KEY;
@@ -87,8 +91,20 @@ router.get('/registry', (req, res) => {
           if (item.pointer === "/credentialSubject/familyName"  || item.pointer === "/credentialSubject/Apellido1") {
             userDetails.familyName = item.value.trim();
           }
-          if (item.pointer === "/credentialSubject/dateOfBirth" || item.pointer === "/credentialSubject/Apellido2") {
+          if (item.pointer === "/credentialSubject/dateOfBirth") {
             userDetails.dateOfBirth = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/DNI") {
+            userDetails.DNI = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/NIF del organismo") {
+            userDetails.NIF_del_organismo = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/Organismo") {
+            userDetails.Organismo = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/Puesto") {
+            userDetails.Puesto = item.value.trim();
           }
       }
 
