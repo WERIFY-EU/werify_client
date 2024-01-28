@@ -23,7 +23,7 @@ router.get('/home', (req, res) => {
 
       // Find the email value
       for (const item of storedValues) {
-          if (item.pointer === "/credentialSubject/email") {
+          if (item.pointer === "/credentialSubject/email"  || item.pointer === "/credentialSubject/correo-e") {
 
             return checkUserExists(item.value.trim())
               .then(exists => {
