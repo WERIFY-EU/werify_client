@@ -33,8 +33,8 @@ app.use('/api', apiRoutes);
 app.use('/client', clientRoutes);
 app.get('/config', (req, res) => {
   res.json({
-      loginUrl: 'https://staging.werify.eu/#' + process.env.LOGIN_URL,
-      registryUrl: 'https://staging.werify.eu/#' + process.env.REGISTRY_URL
+      loginUrl: process.env.BASE_URL + '#' + process.env.LOGIN_URL,
+      registryUrl: process.env.BASE_URL + '#' + process.env.REGISTRY_URL
   });
 });
 app.use('*', (req, res) => {
