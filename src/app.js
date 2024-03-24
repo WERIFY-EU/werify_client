@@ -5,9 +5,13 @@ const apiRoutes = require('./routes/api');
 const clientRoutes = require('./routes/client');
 const path = require('path');
 const mongoose = require('mongoose');
+const i18next = require('./config/i18n');
+const middleware = require('i18next-http-middleware');
+const app = express();
 require('dotenv').config();
 
-const app = express();
+
+app.use(middleware.handle(i18next));
 
 app.use(express.text());
 // Set EJS as the view engine

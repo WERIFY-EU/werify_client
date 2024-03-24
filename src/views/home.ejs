@@ -1,46 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Werify - Soluciones SSI</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
     <%- include('components/header') %>
 
-    <div class="content">
-        <div class="showcase">
-            <div class="showcase-text">
-                <h1>Revolutionizing Credential Verification with SSI</h1>
-                <p>Deploying Quick Verification Points for Self-Sovereign Identity Credentials</p>
+        <div class="content">
+            <div class="showcase">
+                <div class="showcase-text">
+                    <h1><%= t('home.title') %></h1>
+                    <p><%= t('welcomeMessage') %></p>
+                    <p>Deploying Quick Verification Points for Self-Sovereign Identity Credentials</p>
+                </div>
+
+                <img src="/assets/img/ssi_credentials.png" alt="SSI Related Image">
+
+
             </div>
-
-            <img src="/assets/img/ssi_credentials.png" alt="SSI Related Image">
-
-
+            <div class="features">
+                <section>
+                    <h2>Multi-Credential Wallet Management</h2>
+                    <p>Holders will carry multiple credentials in their wallet, issued by different issuers.</p>
+                </section>
+                <section>
+                    <h2>Flexible Business Process Scheduling</h2>
+                    <p>Business processes need a versatile rule scheduler to request different VCs and capture
+                        attributes.</p>
+                </section>
+                <section>
+                    <h2>Dynamic Deployment of Werify Points</h2>
+                    <p>High-performance Werify points must be dynamically deployed for in-person and remote processes.
+                    </p>
+                </section>
+                <section>
+                    <h2>VC Integration in Business Applications</h2>
+                    <p>Business applications need VC integration to perform authentication and acquire data.</p>
+                </section>
+            </div>
         </div>
-        <div class="features">
-            <section>
-                <h2>Multi-Credential Wallet Management</h2>
-                <p>Holders will carry multiple credentials in their wallet, issued by different issuers.</p>
-            </section>
-            <section>
-                <h2>Flexible Business Process Scheduling</h2>
-                <p>Business processes need a versatile rule scheduler to request different VCs and capture attributes.</p>
-            </section>
-            <section>
-                <h2>Dynamic Deployment of Werify Points</h2>
-                <p>High-performance Werify points must be dynamically deployed for in-person and remote processes.</p>
-            </section>
-            <section>
-                <h2>VC Integration in Business Applications</h2>
-                <p>Business applications need VC integration to perform authentication and acquire data.</p>
-            </section>
-        </div>
-    </div>
-    
-    <%- include('components/footer') %>
-    
+
+        <%- include('components/footer') %>
+
 </body>
+
 </html>
