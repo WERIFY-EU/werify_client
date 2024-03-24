@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Werify - Soluciones SSI</title>
@@ -9,9 +11,13 @@
             height: 100%;
             box-sizing: border-box;
         }
-        *, *:before, *:after {
+
+        *,
+        *:before,
+        *:after {
             box-sizing: inherit;
         }
+
         body {
             position: relative;
             min-height: 100%;
@@ -22,25 +28,33 @@
             background-color: #fff;
             color: #333;
         }
+
         .content {
             flex: 1;
-            padding-bottom: 80px; /* Equal to footer height */
+            padding-bottom: 80px;
+            /* Equal to footer height */
         }
+
         .footer {
             position: absolute;
             bottom: 0;
             width: 100%;
-            height: 80px; /* Footer height */
+            height: 80px;
+            /* Footer height */
             background: #333;
             color: #fff;
             text-align: center;
             padding: 20px 0;
         }
+
         .showcase img {
-            max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
-            height: auto; /* Mantiene la proporción de la imagen */
+            max-width: 100%;
+            /* Asegura que la imagen no sea más ancha que su contenedor */
+            height: auto;
+            /* Mantiene la proporción de la imagen */
             max-height: 600px;
         }
+
         header {
             background: #333;
             color: #fff;
@@ -48,38 +62,48 @@
             min-height: 70px;
             border-bottom: #008cba 3px solid;
         }
+
         header a {
             color: #fff;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
         }
+
         header ul {
             padding: 0;
             list-style: none;
         }
+
         header li {
             display: inline;
             padding: 0 20px 0 20px;
         }
+
         header #branding {
             float: left;
         }
+
         header #branding img {
             height: 60px;
         }
+
         header nav {
             float: right;
             margin-top: 10px;
         }
+
         header nav ul li.current a {
-            text-decoration: underline; /* This will underline the text */
+            text-decoration: underline;
+            /* This will underline the text */
         }
+
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
         }
+
         .showcase {
             display: flex;
             justify-content: space-between;
@@ -88,37 +112,118 @@
             padding: 0 50px;
             background: url('path_to_your_background_image.jpg') no-repeat right center / cover;
         }
+
         .showcase .showcase-text {
             max-width: 50%;
             margin-right: 20px;
         }
+
         .showcase h1 {
             font-size: 55px;
             margin-bottom: 10px;
         }
+
         .showcase p {
             font-size: 20px;
         }
+
         .features {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
         }
+
         .features section {
             width: 33.3333%;
             padding: 0 15px;
             box-sizing: border-box;
         }
+
         .features h2 {
             font-size: 24px;
             color: #333;
         }
+
         .features p {
             font-size: 16px;
             color: #666;
         }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 15%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        #showQrButton {
+            background-color: #008cba; /* Color de fondo */
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Padding */
+            border: none; /* Elimina el borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor */
+            font-size: 16px; /* Tamaño del texto */
+            transition: background-color 0.3s ease; /* Transición suave al cambiar el color */
+            display: block; /* Hace que el botón sea un bloque, permitiendo alinear a la derecha */
+            margin-top: 20px; /* Ajusta a tu preferencia para mover hacia abajo */
+            margin-right: 0; /* Alinea a la derecha */
+            margin-left: auto; /* Alinea a la derecha */
+
+        }
+        
+        #showQrButton:hover {
+            background-color: #005f7a; /* Color al pasar el mouse */
+        }
+
+        #showQrButton i {
+            margin-right: 8px; /* Espacio entre el icono y el texto */
+        }
+
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -137,8 +242,13 @@
     <div class="content">
         <div class="showcase">
             <div class="showcase-text">
-                <h1>Welcome, <%= user.firstName %> <%= user.familyName %>!</h1>
-                <p>Congratulations on your successful registration! You are now granted access to the exclusive private area. Simply present your email credential for entry. Rest assured, your access is safeguarded by the cutting-edge Self-Sovereign Identity (SSI) technology, ensuring your privacy and security in this privileged space</p>
+                <h1>Welcome, <%= user.firstName %>
+                        <%= user.familyName %>!</h1>
+                <p>Congratulations on your successful registration! You are now granted access to the exclusive private
+                    area. Simply present your email credential for entry. Rest assured, your access is safeguarded by
+                    the cutting-edge Self-Sovereign Identity (SSI) technology, ensuring your privacy and security in
+                    this privileged space</p>
+                <button id="showQrButton"><i class="fa fa-id-card-o"></i>Get Credential</button>
             </div>
 
             <img src="/assets/img/registry.png" alt="Segure Registry">
@@ -146,10 +256,74 @@
 
         </div>
     </div>
-    
+
     <footer class="footer">
         <p>Werify Solutions &copy; 2023</p>
     </footer>
     <script src="/js/home.js"></script>
+
+    <!-- The Modal -->
+    <div id="qrModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Scan this QR code to get your credential:</p>
+            <img id="qrImage" src="" alt="QR Code">
+        </div>
+    </div>
+
+    <script>
+        var userData = {
+            firstName: "<%= user.firstName %>",
+            familyName: "<%= user.familyName %>",
+            email: "<%= user.email %>",
+            dateOfBirth: "<%= user.dateOfBirth %>",
+            company: "Werify",
+            position: "Guest",
+        };
+
+        document.getElementById("showQrButton").onclick = function() {
+            var modal = document.getElementById("qrModal");
+            var span = document.getElementsByClassName("close")[0];
+        
+            // Close modal when user clicks on <span> (x)
+            span.onclick = function() {
+                modal.style.display = "none";
+            };
+        
+            // Close modal when user clicks outside of it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        
+            // Setup the fetch request options for a POST request
+            fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: "asdfasd",
+                    firstName: userData.firstName, 
+                    familyName: userData.familyName,
+                    email: userData.email,
+                    dateOfBirth: userData.dateOfBirth,
+                    company: userData.company,
+                    position: userData.position,
+                })
+            })
+            .then(response => response.text()) // Assuming the response is JSON containing base64qr
+            .then(data => {
+                document.getElementById("qrImage").src = `data:image/png;base64,${data}`;
+                modal.style.display = "block";
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        };
+    </script>
 </body>
+
 </html>
