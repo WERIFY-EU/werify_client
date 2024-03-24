@@ -1,0 +1,72 @@
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 15%;
+    /* Could be more or less, depending on screen size */
+}
+
+#showQrButton {
+    background-color: #008cba; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Padding */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor */
+    font-size: 16px; /* Tamaño del texto */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar el color */
+    display: block; /* Hace que el botón sea un bloque, permitiendo alinear a la derecha */
+    margin-top: 20px; /* Ajusta a tu preferencia para mover hacia abajo */
+    margin-right: 0; /* Alinea a la derecha */
+    margin-left: auto; /* Alinea a la derecha */
+
+}
+
+#showQrButton:hover {
+    background-color: #005f7a; /* Color al pasar el mouse */
+}
+
+#showQrButton i {
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
