@@ -40,6 +40,10 @@
         "SUB-TITLE": "Secure Access Granted",
         "PARAGRAPH": "Congratulations! You are now in your exclusive private area, a space where your privacy and security are our top priorities. Your successful entry here was secured through the advanced technology of Self-Sovereign Identity (SSI)."
     },
+    "NOT-FOUND":{
+        "TITLE":"We're sorry",
+        "PARAGRAPH": "It appears that you are not authorized to access this area."
+    },
 
     "AOC":{
         "WELCOME": {

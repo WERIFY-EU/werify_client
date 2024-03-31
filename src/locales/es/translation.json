@@ -40,6 +40,10 @@
         "SUB-TITLE": "Acceso Seguro Concedido",
         "PARAGRAPH": "¡Felicidades! Ahora estás en tu área privada exclusiva, un espacio donde tu privacidad y seguridad son nuestras principales prioridades. Tu entrada exitosa aquí fue asegurada a través de la tecnología avanzada de Identidad Autosoberana (SSI)."
     },
+    "NOT-FOUND":{
+        "TITLE":"Lo sentimos",
+        "PARAGRAPH": "Parece que no estás autorizado para acceder a esta área."
+    },
 "AOC": {
     "WELCOME": {}
 }
