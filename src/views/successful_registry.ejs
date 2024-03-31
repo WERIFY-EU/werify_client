@@ -16,13 +16,9 @@
     <div class="content">
         <div class="showcase">
             <div class="showcase-text">
-                <h1>Welcome, <%= user.firstName %>
-                        <%= user.familyName %>!</h1>
-                <p>Congratulations on your successful registration! You are now granted access to the exclusive private
-                    area. Simply present your email credential for entry. Rest assured, your access is safeguarded by
-                    the cutting-edge Self-Sovereign Identity (SSI) technology, ensuring your privacy and security in
-                    this privileged space</p>
-                <button id="showQrButton"><i class="fa fa-id-card-o"></i>Get Credential</button>
+                <h1><%= t('SUCCESSFULL-REGISTRY.TITLE') %>, <%= user.firstName %> <%= user.familyName %>!</h1>
+                <p><%= t('SUCCESSFULL-REGISTRY.PARAGRAPH') %></p>
+                <button id="showQrButton"><i class="fa fa-id-card-o"></i><%= t('SUCCESSFULL-REGISTRY.BUTTON') %></button>
             </div>
 
             <img src="/assets/img/registry.png" alt="Segure Registry">
@@ -38,7 +34,7 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Scan this QR code to get your credential:</p>
+            <p><%= t('SUCCESSFULL-REGISTRY.MODAL') %></p>
             <img id="qrImage" src="" alt="QR Code">
         </div>
     </div>

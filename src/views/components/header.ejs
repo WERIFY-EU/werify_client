@@ -6,13 +6,13 @@
         </div>
         <nav>
             <ul>
-                <li class="current"><a href="/client/home">Home</a></li>
+                <li class="current"><a href="/client/home"><%= t('HEADER.MENU-1') %></a></li>
                 <% if (sessionExists) { %>
-                    <li><a href="/client/private_area">Private Area</a></li>
-                    <li><a href="/client/logout">Logout</a></li>
+                    <li><a href="/client/private_area"><%= t('HEADER.MENU-2') %></a></li>
+                    <li><a href="/client/logout"><%= t('HEADER.MENU-3') %></a></li>
                 <% } else { %>
-                    <li><a href="#" onclick="redirectToRegistry()">Registry</a></li>
-                    <li><a href="#" onclick="redirectToLogin()">Login</a></li>
+                    <li><a href="#" onclick="redirectToRegistry()"><%= t('HEADER.MENU-2') %></a></li>
+                    <li><a href="#" onclick="redirectToLogin()"><%= t('HEADER.MENU-3') %></a></li>
                 <% } %>
                 <!-- <li><a href="contact.html">Contact</a></li> -->
             </ul>

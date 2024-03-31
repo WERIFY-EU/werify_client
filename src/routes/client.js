@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models/dataModel');
 const { validateSession, clearSession } = require('../utils/session');
 
+
 router.get('/home', (req, res) => {
   const token = req.query.token;
 
@@ -139,6 +140,7 @@ router.get('/logout', clearSession, (req, res) => {
 router.get('/not_found', (req, res) => {
   res.redirect('/client/not_found');
 });
+
 
 router.get('/successful_registry', (req, res) => {
   res.redirect('/client/successful_registry');

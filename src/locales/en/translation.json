@@ -1,6 +1,49 @@
 {
-    "home": {
-        "title": "Revolutionizing Credential Verification with SSI"
+    "HEADER":{
+        "MENU-1": "HOME",
+        "MENU-2": "REGISTRY",
+        "MENU-3": "LOGIN"
     },
-    "welcomeMessage": "Welcome to Your Private Area"
+    "HOME": {
+        "SHOW-CASE": {
+            "TITLE": "Revolutionizing Credential Verification with SSI",
+            "SUB-TITLE": "Welcome to Your Private Area!",
+            "PARAGRAPH": "Deploying Quick Verification Points for Self-Sovereign Identity Credentials"
+        },
+        "FEATURES": {
+            "FEATURE-1": {
+                "TITLE": "RevolutiMulti-Credential Wallet Managementonizing",
+                "PARAGRAPH": "Holders will carry multiple credentials in their wallet, issued by different issuers"
+            },
+            "FEATURE-2": {
+                "TITLE": "Flexible Business Process Scheduling",
+                "PARAGRAPH": "Business processes need a versatile rule scheduler to request different VCs and capture attributes"
+            },
+            "FEATURE-3": {
+                "TITLE": "Dynamic Deployment of Werify Points",
+                "PARAGRAPH": "High-performance Werify points must be dynamically deployed for in-person and remote processes. "
+            },
+            "FEATURE-4": {
+                "TITLE": "VC Integration in Business Applications",
+                "PARAGRAPH": "Business applications need VC integration to perform authentication and acquire data."
+            }
+        }
+    },
+    "SUCCESSFULL-REGISTRY":{
+        "TITLE":"Welcome,",
+        "PARAGRAPH": "Congratulations on your successful registration! You are now granted access to the exclusive private area. Simply present your email credential for entry. Rest assured, your access is safeguarded by the cutting-edge Self-Sovereign Identity (SSI) technology, ensuring your privacy and security in this privileged space.",
+        "BUTTON": "Get Credential",
+        "MODAL": "Scan this QR code to get your credential:"
+    },
+    "PRIVATE-AREA":{
+        "TITLE":"Welcome to Your Private Area,",
+        "SUB-TITLE": "Secure Access Granted",
+        "PARAGRAPH": "Congratulations! You are now in your exclusive private area, a space where your privacy and security are our top priorities. Your successful entry here was secured through the advanced technology of Self-Sovereign Identity (SSI)."
+    },
+
+    "AOC":{
+        "WELCOME": {
+            
+        }
+    }
 }
