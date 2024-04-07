@@ -44,21 +44,48 @@
         header {
             background: #17316e;
             color: #fff;
-            text-align: center; /* This centers the content of the header */
-            padding: 20px 0;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #008cba 3px solid;
         }
-        .container {
-            width: 100%; /* Full width */
-            display: flex;
-            justify-content: center; /* Centers the child horizontally */
-            align-items: center; /* Centers the child vertically */
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
         }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding img {
+            height: 60px;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header nav ul li.current a {
+            text-decoration: underline; /* This will underline the text */
+        }
+
         #branding {
-            display: inline-block; /* Makes the div size according to its content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Adjusts the space between the images */
         }
+
         #branding img {
-            max-height: 100px; /* Adjusts the size of the logo, keeping it reasonable */
-            width: auto; /* Maintains the aspect ratio of the image */
+            max-height: 50px; /* Makes the images smaller */
+            width: auto; /* Maintains the aspect ratio */
         }
         .container {
             width: 80%;
@@ -109,8 +136,13 @@
     <header>
         <div class="container">
             <div id="branding">
-                <img src="https://rdi.upc.edu/ca/ssri/projectes-institucionals/sectors-emergents-projectes/imatges/i2cat.png/@@images/2ed1c05f-28ca-4a4f-8249-97ec593600e3.png" alt="Werify Logo">
+                <img src="/assets/img/i2cat-logotip.png" alt="I2CAT Logo">
             </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/ebsi/home"><%= t('HEADER.MENU-1') %></a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { AocUser } = require('../models/dataModel');
 
 router.get('/welcome', (req, res) => {
-    res.render('/aoc/aoc');
+    res.render('aoc');
   });
 
   router.get('/registry', (req, res) => {

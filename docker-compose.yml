@@ -1,18 +1,23 @@
-version: '3'
+version: '3.8'
 services:
-  web:
-    build: .
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3002:3002"
     environment:
       - MONGODB_URI=mongodb://mongo:27017/client_werifydb
     depends_on:
       - mongo
+
   mongo:
-    image: mongo
+    image: mongo:latest
+    volumes:
+      - mongo_data:/var/lib/mongo
     ports:
       - "27017:27017"
-    volumes:
-      - ./mongod.conf:/etc/mongod.conf
-      - ./mongod.conf.orig:/etc/mongod.conf.orig
-    restart: always
+    command: ["--config", "/etc/mongo/mongod.conf"]
+    
+volumes:
+  mongo_data:

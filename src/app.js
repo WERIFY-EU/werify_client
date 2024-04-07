@@ -3,6 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const apiRoutes = require('./routes/api');
 const clientRoutes = require('./routes/client');
+const ebsiRoutes = require('./routes/ebsi');
 const i2catRoutes =  require('./routes/i2cat');
 const aocRoutes =  require('./routes/aoc');
 const murciaRoutes =  require('./routes/murcia');
@@ -34,6 +35,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 app.use(bodyParser.json());
 app.use('/api', apiRoutes);
 app.use('/client', clientRoutes);
+app.use('/ebsi', ebsiRoutes);
 app.use('/i2cat', i2catRoutes);
 app.use('/aoc', aocRoutes);
 app.use('/murcia',murciaRoutes);
