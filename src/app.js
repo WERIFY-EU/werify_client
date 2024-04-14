@@ -15,10 +15,9 @@ const app = express();
 require('dotenv').config();
 
 
-app.use(middleware.handle(i18next));
-
 app.use(express.text());
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(middleware.handle(i18next));
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -48,6 +47,12 @@ app.get('/config', (req, res) => {
 //      langi: process.env.BASE_URL + '#' + process.env.REGISTRY_URL_I2CAT,
   });
 });
+
+app.use((req, res, next) => {
+  res.locals.lng = req.language;
+  next();
+});
+
 app.use('*', (req, res) => {
   res.redirect('/client/home#');
 }); 

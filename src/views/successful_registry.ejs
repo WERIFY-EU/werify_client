@@ -11,12 +11,12 @@
 </head>
 
 <body>
-    <%- include('components/header') %>
+    <%- include('components/header', {lng: lng}) %>
 
     <div class="content">
         <div class="showcase">
             <div class="showcase-text">
-                <h1><%= t('SUCCESSFULL-REGISTRY.TITLE') %>, <%= user.firstName %> <%= user.familyName %>!</h1>
+                <h1><%= t('SUCCESSFULL-REGISTRY.TITLE') %> <%= user.firstName %> <%= user.familyName %>!</h1>
                 <p><%= t('SUCCESSFULL-REGISTRY.PARAGRAPH') %></p>
                 <button id="showQrButton"><i class="fa fa-id-card-o"></i><%= t('SUCCESSFULL-REGISTRY.BUTTON') %></button>
             </div>

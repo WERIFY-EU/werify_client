@@ -43,18 +43,18 @@ router.get('/home', (req, res) => {
           }
       }
 
-      res.render('not_found', { sessionExists: !!req.session.jwt });
+      res.render('not_found', { lng: req.language,sessionExists: !!req.session.jwt });
     } catch (error) {
       console.log(error);
-      res.render('not_found', { sessionExists: !!req.session.jwt });
+      res.render('not_found', { lng: req.language,sessionExists: !!req.session.jwt });
     }
   } else {
-    res.render('home', { sessionExists: !!req.session.jwt });
+    res.render('home', { lng: req.language, sessionExists: !!req.session.jwt });
   }
 });
 
 router.get('/private_area', validateSession, (req, res) => {
-  res.render('private_area', { sessionExists: !!req.session.jwt });
+  res.render('private_area', { lng: req.language, sessionExists: !!req.session.jwt });
 });
 
 router.get('/registry', (req, res) => {
@@ -114,6 +114,7 @@ router.get('/registry', (req, res) => {
       .then(() => {
         // Handle successful save
         res.render('successful_registry', { 
+          lng: req.language,
           sessionExists: !!req.session.jwt, 
           user: userDetails 
         });
@@ -121,15 +122,15 @@ router.get('/registry', (req, res) => {
       .catch(error => {
         // Handle error
         console.error(error);
-        res.render('not_found', { sessionExists: !!req.session.jwt });
+        res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
       });
 
     } catch (error) {
       console.log(error);
-      res.render('not_found', { sessionExists: !!req.session.jwt });
+      res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
     }
   } else {
-    res.render('home', { sessionExists: !!req.session.jwt });
+    res.render('home', { lng: req.language, sessionExists: !!req.session.jwt });
   }
 });
 

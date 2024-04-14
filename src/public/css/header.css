@@ -32,3 +32,14 @@ header nav {
 header nav ul li.current a {
     text-decoration: underline; /* This will underline the text */
 }
+.language-selector {
+    float: right; /* Or position it as per your design */
+    margin: 10px;
+    padding: 5px;
+}
+
+.language-selector select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
