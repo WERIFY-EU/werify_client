@@ -6,8 +6,11 @@ COPY package*.json ./
 
 RUN yarn install
 
-COPY dist/ .
+COPY . .
+
+RUN yarn build
 
 EXPOSE 3002
 
-CMD ["node", "bundle.js"]
+CMD ["node", "dist/bundle.js"]
+

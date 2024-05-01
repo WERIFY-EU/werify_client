@@ -51,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          target: frontend
+          target: build_werify_client
           push: true
           tags: ${{env.IMAGE_TAG_FRONTEND}}:${{env.IMAGE_VERSION}}
           cache-from: type=gha
@@ -61,7 +61,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          target: werify_client
+          target: build_werify_client
           push: true
           tags: ${{env.IMAGE_TAG_BACKEND}}:${{env.IMAGE_VERSION}}
           cache-from: type=gha
