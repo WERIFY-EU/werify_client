@@ -21,15 +21,6 @@
 **/Thumbs.db
 .github/
 .editorconfig
-**/node_modules/
-email_bot/src/test_support/
-credentials.json
-tokencache.json
-./vscode
 Rocket.toml
-**/.idea
-latest_release
 .git/
 .idea/
-public_api/static/certos/
-private_api/templates/
