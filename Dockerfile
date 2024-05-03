@@ -22,6 +22,8 @@ CMD ["npx", "nodemon", "src/server.js"]
 
 FROM base as production
 
+COPY node_modules ./node_modules
+
 COPY dist ./dist/
 
 COPY src/public ./dist/public

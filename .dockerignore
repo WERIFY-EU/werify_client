@@ -20,7 +20,6 @@
 **/Dockerfile
 **/Thumbs.db
 .github/
-**/node_modules/
 .editorconfig
 Rocket.toml
 .git/
