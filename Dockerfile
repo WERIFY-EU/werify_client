@@ -1,30 +1,31 @@
 FROM node:20 as base
+
 LABEL com.centurylinklabs.watchtower.enable="true"
 
 WORKDIR /usr/src/app
 
 EXPOSE 3002
 
-CMD ["node", "dist/server.js"]
 
 
-FROM base as local
+FROM base as development
 
-COPY package*.json ./
+COPY ["package*.json", "yarn.lock", "./"]
 
 RUN yarn install
 
-COPY . .
+RUN yarn add nodemon
 
-RUN yarn build
-
-COPY src/public ./dist/public
-COPY src/views ./dist/views
+CMD ["npx", "nodemon", "src/server.js"]
 
 
-FROM base as github
 
-COPY node_modules ./
+FROM base as production
+
 COPY dist ./dist/
+
 COPY src/public ./dist/public
+
 COPY src/views ./dist/views
+
+CMD ["node", "dist/server.js"]

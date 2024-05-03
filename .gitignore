@@ -93,3 +93,6 @@ dist
 
 # Serverless directories
 .serverless
+
+# Compose override for development
+docker-compose.override.yml

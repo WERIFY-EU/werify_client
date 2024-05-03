@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          target: github
+          target: production
           push: true
           tags: ${{env.IMAGE_TAG_CLIENT}}:${{env.IMAGE_VERSION}}
           cache-from: type=gha

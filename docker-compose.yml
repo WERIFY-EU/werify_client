@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: .
-      target: local
+      target: production
     ports:
       - "3002:3002"
     environment:
