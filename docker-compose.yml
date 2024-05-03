@@ -6,14 +6,6 @@ services:
       target: production
     ports:
       - "3002:3002"
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/${MONGO_DATABASE}
-      - PUBLIC_KEY=${PUBLIC_KEY}
-      - PRIVATE_OWN_KEY=${PRIVATE_OWN_KEY}
-      - PUBLIC_OWN_KEY=${PUBLIC_OWN_KEY}
-      - BASE_URL=${BASE_URL}
-      - LOGIN_URL=${LOGIN_URL}
-      - REGISTRY_URL=${REGISTRY_URL}
     depends_on:
       - mongo
   mongo:
