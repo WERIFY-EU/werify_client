@@ -10,10 +10,6 @@ EXPOSE 3002
 
 FROM base as development
 
-COPY ["package*.json", "yarn.lock", "./"]
-
-RUN yarn install
-
 RUN yarn add nodemon
 
 CMD ["npx", "nodemon", "src/server.js"]

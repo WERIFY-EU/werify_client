@@ -7,11 +7,26 @@ services:
     ports:
       - "3002:3002"
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/client_werifydb
+      - MONGODB_URI=mongodb://mongo:27017/${MONGO_DATABASE}
+      - PUBLIC_KEY=${PUBLIC_KEY}
+      - PRIVATE_OWN_KEY=${PRIVATE_OWN_KEY}
+      - PUBLIC_OWN_KEY=${PUBLIC_OWN_KEY}
+      - BASE_URL=${BASE_URL}
+      - LOGIN_URL=${LOGIN_URL}
+      - REGISTRY_URL=${REGISTRY_URL}
     depends_on:
       - mongo
   mongo:
     image: mongo
     ports:
       - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+    volumes:
+     - mongodb_data:/data/db
     restart: always
+
+volumes:
+  mongodb_data:

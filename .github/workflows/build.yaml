@@ -1,9 +1,11 @@
 name: Build
 env:
   IMAGE_TAG_CLIENT: ghcr.io/werify-eu/werify_client/werify_client
-
   IMAGE_VERSION: ${{ github.ref == 'refs/heads/main' && 'latest' || 'staging' }}
-
+  MONGODB_URI: ${{secrets.MONGODB_URI}}
+  MONGO_INITDB_ROOT_USERNAME: ${{secrets.MONGO_INITDB_ROOT_USERNAME}}
+  MONGO_INITDB_ROOT_PASSWORD: ${{secrets.MONGO_INITDB_ROOT_PASSWORD}}
+  MONGO_INITDB_DATABASE: ${{secrets.MONGO_DATABASE}}
 on:
   push:
     branches:
