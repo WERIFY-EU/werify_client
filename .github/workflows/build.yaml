@@ -40,8 +40,6 @@ jobs:
 
       - name: Yarn build app
         run:  yarn run build
-        env:
-          CI: ""
 
       - name: Docker build image
         uses: docker/build-push-action@v5
