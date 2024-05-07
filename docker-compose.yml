@@ -1,18 +1,15 @@
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      target: production
     ports:
       - "3002:3002"
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/client_werifydb
     depends_on:
       - mongo
   mongo:
     image: mongo
     ports:
       - "27017:27017"
-    volumes:
-      - ./mongod.conf:/etc/mongod.conf
-      - ./mongod.conf.orig:/etc/mongod.conf.orig
     restart: always
