@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado de Asistencia</title>
+    <style>
+        body, html {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .certificate-container {
+            width: 65vw;
+            max-width: 65em;
+            height: 80vh; /* Cambiado para mantener proporcionalidad */
+            position: relative;
+            margin: 3em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+
+        }
+        .certificate-background {
+            width: 100%;
+            height: 55vh; /* Altura basada en la altura de la vista */
+            background: url('/assets/certificate/fondo-del-certs.png') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .certificate-container, .certificate-background {
+                width: 90vw; /* Aumenta el ancho en pantallas pequeñas */
+            }
+            .data, .subtitle, .title-text {
+                font-size: 4vw; /* Fuente escalable según el ancho de la vista */
+            }
+        }
+        .content {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            color: #fff;
+            text-align: left;
+        }
+        .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .title-text {
+            padding-left: .5em;
+            max-width: 35em;
+        }
+        .subtitle {
+            padding-top: 1em;
+            word-break: break-word;
+            font-size: 25px;
+        }
+        .title-image {
+            align-self: end;
+            justify-self: end;
+        }
+        .logo-werify {
+            margin-left: 8em;
+            max-width: 15em;
+        }
+        .horizontal-line {
+            height: 1px;
+            background-color: #40E0D0;
+            margin: 1em;
+            margin-left: 0;
+            width: 100%;
+        }
+        .vertical-line {
+            position: absolute;
+            left: 39%;
+            top: 15em;
+            bottom: 13em;
+            width: 1px;
+            background-color: #40E0D0;
+            z-index: 100
+        }
+        .data-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2em;
+        }
+        .auth-seal {
+            position: absolute;
+            bottom: 1em;
+            left: 0;
+            width: 15em;
+        }
+        .data {
+            font-size: 18px;
+            letter-spacing: 2px;
+            width: 33em;
+            margin: 2em 0 0 17em;
+        }
+        .assistant-container, .professor-and-date-container, .entity-container {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 3em;
+        }
+        .professor-container, .date-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        .professor-container {
+            margin-right: 4em;
+        }
+        .italic {
+            font-style: oblique;
+            margin-left: 1em;
+        }
+        .line {
+            position: absolute;
+            background-color: #fff;
+            height: 2px;
+            z-index: 100;
+        }
+        .assistant-line {
+            top: 16em; 
+            left: 20.2em; 
+            right: 0em;
+        }
+        .professor-line {
+            top: 20.7em; 
+            left: 20.2em; 
+            right: 16em;
+        }
+        .date-line {
+            top: 20.7em; 
+            left: 45.3em; 
+            right: 0em;
+        }
+        .entity-line {
+            top: 25.5em; 
+            left: 20.2em; 
+            right: 0em;
+        }
+        .sign-line {
+            height: 2px;
+            background-color: #000;
+            left: 45em;
+            right: 4em;
+            top: 39em;
+        }
+        .signature {
+            position: absolute;;
+            top: 33em;
+            left: 45em;
+            width: 270px;
+        }
+        .second-sign-line {
+            height: 2px;
+            background-color: #000;
+            left: 23.8em;
+            right: 26em;
+            top: 39em;
+        }
+        .sign-description {
+            position: absolute;;
+            top: 43em;
+            left: 46.7em;
+            width: 300px;
+            text-align: center;
+            overflow: wrap;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="vertical-line"></div>
+    <div class="certificate-container">
+        <div class="certificate-background">
+            <!-- Contenido del certificado aquí -->
+            <div class="content">
+                <div class="title-container">
+                    <div class="title-text">
+                        <h2>CERTIFICADO DE ASISTENCIA - Taller</h2>
+                        <div class="subtitle">Identidad AutoGestionada y Credenciales Verificables para Business Managers</div>
+                    </div>
+                    <div class="title-image">
+                        <img src="/assets/certificate/Werify-We-make-Web3-Werifiable.png" alt="We Make Web3 Werifiable" class="logo-werify">
+                    </div>
+                </div>
+                <div class="horizontal-line"></div>
+                <div class="data-container">
+                    <div class="seal-container">
+                        <img src="/assets/certificate/certificado-de-autenticidad-vise.png" alt="Sello de Autenticidad" class="auth-seal">
+                    </div>
+                    <div class="data">
+                        <div class="assistant-container">
+                            <div>Asistente al Taller:</div>
+                            <div class="italic"><%= certificate.name %> <%= certificate.lastName %></div>
+                        </div>
+                        <div class="professor-and-date-container">
+                            <div class="professor-container">
+                                <div>Curso impartido por </div>
+                                <div class="italic">José F Ruiz</div>
+                            </div>
+                            <div class="date-container">
+                                <div>Fecha </div>
+                                <div class="italic">18/04/2024</div>
+                            </div>
+                        </div>
+                        <div class="entity-container">
+                            <div>Entidad </div>
+                            <div class="italic">Werify - We Make Web3 Werifiable</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line assistant-line"></div>
+                <div class="line professor-line"></div>
+                <div class="line date-line"></div>
+                <div class="line entity-line"></div>
+            </div>
+        </div>
+        <div>
+            <div class="line second-sign-line"></div>
+            <img src="/assets/certificate/ejemplo-firma-jfrs.jpg" alt="Sign" class="signature">
+            <div class="line sign-line"></div>
+            <div class="sign-description">José Francisco Ruiz, Founder and CEO Werify by IVIS</div>
+        </div>
+    </div>
+</body>
+</html>

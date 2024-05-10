@@ -2,7 +2,8 @@
     "HEADER":{
         "MENU-1": "HOME",
         "MENU-2": "REGISTRY",
-        "MENU-3": "LOGIN"
+        "MENU-3": "LOGIN",
+        "MENU-4": "MY CERTIFICATE"
     },
     "HOME": {
         "SHOW-CASE": {
@@ -32,7 +33,11 @@
         "TITLE":"Welcome,",
         "PARAGRAPH": "Congratulations on your successful registration! You are now granted access to the exclusive private area. Simply present your email credential for entry. Rest assured, your access is safeguarded by the cutting-edge Self-Sovereign Identity (SSI) technology, ensuring your privacy and security in this privileged space.",
         "BUTTON": "Get Credential",
-        "MODAL": "Scan this QR code to get your credential:"
+        "BUTTON-CERTIFICATE": "Get Certificate",
+        "MODAL": "Scan this QR code to get your credential:",
+        "MODAL-FORM-NAME": "Name",
+        "MODAL-FORM-LAST-NAME": "Last Name",
+        "MODAL-FORM-BUTTON": "Sent"
     },
     "PRIVATE-AREA":{
         "TITLE":"Welcome to Your Private Area,",

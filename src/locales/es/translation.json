@@ -2,7 +2,8 @@
     "HEADER": {
         "MENU-1": "INICIO",
         "MENU-2": "REGISTRO",
-        "MENU-3": "INICIAR SESIÓN"
+        "MENU-3": "INICIAR SESIÓN",
+        "MENU-4": "MI CERTIFICADO"
     },
     "HOME": {
         "SHOW-CASE": {
@@ -32,7 +33,11 @@
         "TITLE": "Bienvenido,",
         "PARAGRAPH": "¡Felicidades por tu registro exitoso! Ahora tienes acceso al área privada exclusiva. Simplemente presenta tu credencial de correo electrónico para entrar. Ten la seguridad de que tu acceso está protegido por la tecnología punta de Identidad Autosoberana (SSI), asegurando tu privacidad y seguridad en este espacio privilegiado.",
         "BUTTON": "Obtener Credencial",
-        "MODAL": "Escanea este código QR para obtener tu credencial:"
+        "BUTTON-CERTIFICATE": "Obtener Certificado",
+        "MODAL": "Escanea este código QR para obtener tu credencial:",
+        "MODAL-FORM-NAME": "Nombre",
+        "MODAL-FORM-LAST-NAME": "Apellido",
+        "MODAL-FORM-BUTTON": "Enviar"
     },
     "PRIVATE-AREA":{
         "TITLE":"Bienvenido a Tu Área Privada,",

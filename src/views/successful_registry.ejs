@@ -13,84 +13,162 @@
 <body>
     <%- include('components/header', {lng: lng}) %>
 
-    <div class="content">
-        <div class="showcase">
-            <div class="showcase-text">
-                <h1><%= t('SUCCESSFULL-REGISTRY.TITLE') %> <%= user.firstName %> <%= user.familyName %>!</h1>
-                <p><%= t('SUCCESSFULL-REGISTRY.PARAGRAPH') %></p>
-                <button id="showQrButton"><i class="fa fa-id-card-o"></i><%= t('SUCCESSFULL-REGISTRY.BUTTON') %></button>
+        <div class="content">
+            <div class="showcase">
+                <div class="showcase-text">
+                    <h1>
+                        <%= t('SUCCESSFULL-REGISTRY.TITLE') %>
+                            <%= user.firstName %>
+                                <%= user.familyName %>!
+                    </h1>
+                    <p>
+                        <%= t('SUCCESSFULL-REGISTRY.PARAGRAPH') %>
+                    </p>
+                    <button id="showQrButton"><i class="fa fa-id-card-o"></i><%= t('SUCCESSFULL-REGISTRY.BUTTON') %></button>
+                    <button id="getCredButton"><i class="fa fa-address-card-o"></i>
+                        <%= t('SUCCESSFULL-REGISTRY.BUTTON-CERTIFICATE') %>
+                    </button>
+                </div>
+
+                <img src="/assets/img/registry.png" alt="Segure Registry">
+
+
+            </div>
+        </div>
+
+        <%- include('components/footer') %>
+
+            <!-- The Modal -->
+            <div id="qrModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>
+                        <%= t('SUCCESSFULL-REGISTRY.MODAL') %>
+                    </p>
+                    <img id="qrImage" src="" alt="QR Code">
+                </div>
             </div>
 
-            <img src="/assets/img/registry.png" alt="Segure Registry">
+            <div id="credModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="closeCred">&times;</span>
+                    <form id="credForm">
+                        <input type="text" id="credName" name="credName"
+                            placeholder="<%= t('SUCCESSFULL-REGISTRY.MODAL-FORM-NAME') %>" required>
+                        <input type="text" id="credLastName" name="credLastName"
+                            placeholder="<%= t('SUCCESSFULL-REGISTRY.MODAL-FORM-LAST-NAME') %>" required>
+                        <button type="submit" id="generateQrButton">
+                            <%= t('SUCCESSFULL-REGISTRY.MODAL-FORM-BUTTON') %>
+                        </button>
+                    </form>
+                    <p id="formFeedback"></p>
+                    <img id="qrImageCertificate" src="" alt="QR Code">
+                </div>
+            </div>
 
+            <script>
+                var userData = {
+                    firstName: "<%= user.firstName %>",
+                    familyName: "<%= user.familyName %>",
+                    email: "<%= user.email %>",
+                    dateOfBirth: "<%= user.dateOfBirth %>",
+                    phone: "<%= user.phone %>",
+                    company: "Werify",
+                    position: "Guest",
+                };
 
-        </div>
-    </div>
+                document.getElementById("showQrButton").onclick = function () {
+                    var modal = document.getElementById("qrModal");
+                    var span = document.getElementsByClassName("close")[0];
 
-    <%- include('components/footer') %>
+                    // Close modal when user clicks on <span> (x)
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                    };
 
-    <!-- The Modal -->
-    <div id="qrModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p><%= t('SUCCESSFULL-REGISTRY.MODAL') %></p>
-            <img id="qrImage" src="" alt="QR Code">
-        </div>
-    </div>
+                    // Close modal when user clicks outside of it
+                    window.onclick = function (event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    };
 
-    <script>
-        var userData = {
-            firstName: "<%= user.firstName %>",
-            familyName: "<%= user.familyName %>",
-            email: "<%= user.email %>",
-            dateOfBirth: "<%= user.dateOfBirth %>",
-            company: "Werify",
-            position: "Guest",
-        };
+                    // Setup the fetch request options for a POST request
+                    fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr', {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: "asdfasd",
+                            firstName: userData.firstName,
+                            familyName: userData.familyName,
+                            email: userData.email,
+                            dateOfBirth: userData.dateOfBirth,
+                            company: userData.company,
+                            position: userData.position,
+                        })
+                    })
+                        .then(response => response.text()) // Assuming the response is JSON containing base64qr
+                        .then(data => {
+                            document.getElementById("qrImage").src = `data:image/png;base64,${data}`;
+                            modal.style.display = "block";
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                };
 
-        document.getElementById("showQrButton").onclick = function() {
-            var modal = document.getElementById("qrModal");
-            var span = document.getElementsByClassName("close")[0];
-        
-            // Close modal when user clicks on <span> (x)
-            span.onclick = function() {
-                modal.style.display = "none";
-            };
-        
-            // Close modal when user clicks outside of it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            };
-        
-            // Setup the fetch request options for a POST request
-            fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr', {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: "asdfasd",
-                    firstName: userData.firstName, 
-                    familyName: userData.familyName,
-                    email: userData.email,
-                    dateOfBirth: userData.dateOfBirth,
-                    company: userData.company,
-                    position: userData.position,
-                })
-            })
-            .then(response => response.text()) // Assuming the response is JSON containing base64qr
-            .then(data => {
-                document.getElementById("qrImage").src = `data:image/png;base64,${data}`;
-                modal.style.display = "block";
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        };
-    </script>
+                document.getElementById("getCredButton").onclick = function () {
+                    var credModal = document.getElementById("credModal");
+                    credModal.style.display = "block";
+                };
+                
+                var closeCredSpan = document.getElementsByClassName("closeCred")[0];
+                closeCredSpan.onclick = function () {
+                    document.getElementById("credModal").style.display = "none";
+                };
+                
+                window.onclick = function (event) {
+                    var credModal = document.getElementById("credModal");
+                    if (event.target == credModal) {
+                        credModal.style.display = "none";
+                    }
+                };                
+
+                document.getElementById("credForm").onsubmit = function (event) {
+                    event.preventDefault();
+                    var certificateData = {
+                        "name": document.getElementById("credName").value,
+                        "lastName": document.getElementById("credLastName").value,
+                        "email": userData.email,
+                        "phone": userData.phone
+                    }
+
+                    fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr/werify_certificat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(
+                            certificateData
+                        )
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById("qrImageCertificate").src = `data:image/png;base64,${data}`;
+                            document.getElementById("formFeedback").innerText = "QR Code Generated Successfully!";
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                            document.getElementById("formFeedback").innerText = "Failed to generate QR Code.";
+                        });
+
+                    //document.getElementById("credModal").style.display = "none";
+                };
+            </script>
 </body>
 
 </html>

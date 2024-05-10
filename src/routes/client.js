@@ -61,6 +61,7 @@ router.get('/registry', (req, res) => {
   const token = req.query.token;
   const userDetails = {
     email: '', 
+    phone: '',
     firstName: '', 
     familyName: '',
     dateOfBirth: '',
@@ -85,6 +86,9 @@ router.get('/registry', (req, res) => {
       for (const item of storedValues) {
           if (item.pointer === "/credentialSubject/email" || item.pointer === "/credentialSubject/correo-e") {
             userDetails.email = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/phone") {
+            userDetails.phone = item.value.trim();
           }
           if (item.pointer === "/credentialSubject/firstName"  || item.pointer === "/credentialSubject/Nombre") {
             userDetails.firstName = item.value.trim();

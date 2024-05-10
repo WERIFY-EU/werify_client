@@ -31,7 +31,7 @@
     /* Could be more or less, depending on screen size */
 }
 
-#showQrButton {
+#showQrButton, #getCredButton{
     background-color: #008cba; /* Color de fondo */
     color: white; /* Color del texto */
     padding: 10px 20px; /* Padding */
@@ -47,11 +47,11 @@
 
 }
 
-#showQrButton:hover {
+#showQrButton:hover, #getCredButton:hover{
     background-color: #005f7a; /* Color al pasar el mouse */
 }
 
-#showQrButton i {
+#showQrButton i, #getCredButton i {
     margin-right: 8px; /* Espacio entre el icono y el texto */
 }
 
@@ -69,4 +69,88 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.close, .closeCred {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .closeCred:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#credForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#credForm input[type="text"] {
+    width: 80%; /* Responsive width */
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding and border in the width */
+    border-radius: 5px;
+}
+
+#generateQrButton, #credForm button {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#generateQrButton:hover, #credForm button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+#formFeedback {
+    color: #d8000c;
+    background-color: #ffbaba;
+    margin: 10px 0;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#qrImageCertificate {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    height: auto; 
 }

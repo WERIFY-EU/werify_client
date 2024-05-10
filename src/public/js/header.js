@@ -13,6 +13,11 @@ async function redirectToRegistry() {
     window.location.href = config.registryUrl;
 }
 
+async function redirectToShowCertificate() {
+    const config = await getConfig();
+    window.open(config.certificateUrl, '_blank');
+}
+
 function changeLanguage() {
     const language = document.getElementById('languageSelect').value;
     const date = new Date();
