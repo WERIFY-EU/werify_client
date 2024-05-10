@@ -1,13 +1,29 @@
-FROM node:latest
+FROM node:20 as base
+
+LABEL com.centurylinklabs.watchtower.enable="true"
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
 EXPOSE 3002
 
-CMD ["node", "src/server.js"]
+
+
+FROM base as development
+
+RUN yarn add nodemon
+
+CMD ["npx", "nodemon", "src/server.js"]
+
+
+
+FROM base as production
+
+COPY node_modules ./node_modules
+
+COPY dist ./dist/
+
+COPY src/public ./dist/public
+
+COPY src/views ./dist/views
+
+CMD ["node", "dist/server.js"]

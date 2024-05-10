@@ -62,7 +62,6 @@ Desktop.ini
 
 # npm package lock file
 package-lock.json
-yarn.lock
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
@@ -94,3 +93,6 @@ dist
 
 # Serverless directories
 .serverless
+
+# Compose override for development
+docker-compose.override.yml
