@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const puppeteer = require('puppeteer');
 
-router.get('/certificate', (req, res) => {
+router.get('/certificate', async (req, res) => {
   const token = req.query.token;
   const certificateDetails = {
     email: '', 
@@ -38,10 +39,40 @@ router.get('/certificate', (req, res) => {
           }
       }
 
-      res.render('certificate', { 
-          lng: req.language,
-          certificate: certificateDetails 
+      const browser = await puppeteer.launch();
+      const page = await browser.newPage();
+
+       // Render the EJS template with your data
+       res.render('certificate', { 
+        lng: req.language,
+        certificate: certificateDetails 
+    }, async (err, html) => {
+        if (err) {
+            console.error(err);
+            res.send("Error rendering the page");
+        }
+
+        await page.setContent(html, {
+            waitUntil: 'networkidle0'
         });
+
+        const pdf = await page.pdf({
+            format: 'A4',
+            landscape: true,
+            printBackground: true,
+            margin: { top: 0, right: 0, bottom: 0, left: 0 }
+        });
+
+        await browser.close();
+
+        res.contentType('application/pdf');
+        res.send(pdf);
+    });
+
+      // res.render('certificate', { 
+      //     lng: req.language,
+      //     certificate: certificateDetails 
+      //   });
 
     } catch (error) {
       console.log(error);

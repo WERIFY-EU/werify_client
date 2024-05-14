@@ -22,6 +22,7 @@
     "i18next-http-middleware": "^3.5.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.2",
+    "puppeteer": "^22.8.0",
     "stream-browserify": "^3.0.0",
     "webpack": "^5.91.0"
   },
