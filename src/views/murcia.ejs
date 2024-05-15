@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Werify - Soluciones SSI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html {
+            height: 100%;
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            position: relative;
+            min-height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        .content {
+            flex: 1;
+            padding-bottom: 80px; /* Equal to footer height */
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px; /* Footer height */
+            background: #990033;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .showcase img {
+            max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+            max-height: 600px;
+        }
+        header {
+            background: #990033;
+            color: #fff;
+            text-align: center; /* This centers the content of the header */
+            padding: 20px 0;
+        }
+        .container {
+            width: 100%; /* Full width */
+            display: flex;
+            justify-content: center; /* Centers the child horizontally */
+            align-items: center; /* Centers the child vertically */
+        }
+        #branding {
+            display: inline-block; /* Makes the div size according to its content */
+        }
+        #branding img {
+            max-height: 100px; /* Adjusts the size of the logo, keeping it reasonable */
+            width: auto; /* Maintains the aspect ratio of the image */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .showcase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 600px;
+            padding: 0 50px;
+            background: url('path_to_your_background_image.jpg') no-repeat right center / cover;
+        }
+        .showcase .showcase-text {
+            max-width: 50%;
+            margin-right: 20px;
+            margin-left: 200px;
+        }
+        .showcase h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .showcase p {
+            font-size: 20px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .features section {
+            width: 33.3333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        .features h2 {
+            font-size: 24px;
+            color: #333;
+        }
+        .features p {
+            font-size: 16px;
+            color: #666;
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+
+        #showQrButton {
+            background-color: #9b113f; /* Color de fondo */ 
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Padding */
+            border: none; /* Elimina el borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor */
+            font-size: 16px; /* Tamaño del texto */
+            transition: background-color 0.3s ease; /* Transición suave al cambiar el color */
+            display: block; /* Hace que el botón sea un bloque, permitiendo alinear a la derecha */
+            margin-top: 40px; /* Ajusta a tu preferencia para mover hacia abajo */
+            margin-right: 0; /* Alinea a la derecha */
+            margin-left: auto; /* Alinea a la derecha */
+        
+        }
+        
+        #showQrButton:hover {
+            background-color: #ca3c6b; /* Color al pasar el mouse */
+        }
+        
+        #showQrButton i {
+            margin-right: 8px; /* Espacio entre el icono y el texto */
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="https://murciaregioneuropea.es/image/journal/article?img_id=25917600&t=1635253116063" alt="Werify Logo">
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="showcase">
+            <div class="showcase-text">
+                <h1>Welcome! You discount has been applied to the price! </h1>
+                <p>Thanks to the agreement between the Government of La Rioja and the Region of Murcia, a 20% discount has been applied to the price of your ticket.</p>
+                <p class="bold-text">Please continue with the purchasing process.</p>
+                <button id="showQrButton"><i class="fa fa-shopping-cart"></i>Continue</button>
+            </div>
+
+            <img src="/assets/img/transport.png" alt="Segure Registry" style="padding-right: 200px;">
+
+
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>Public Tranportation System &copy; 2023</p>
+    </footer>
+    <script src="/js/home.js"></script>
+</body>
+</html>

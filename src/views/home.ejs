@@ -1,180 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Werify - Soluciones SSI</title>
-    <style>
-        html {
-            height: 100%;
-            box-sizing: border-box;
-        }
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-        body {
-            position: relative;
-            min-height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Arial', sans-serif;
-            background-color: #fff;
-            color: #333;
-        }
-        .content {
-            flex: 1;
-            padding-bottom: 80px; /* Equal to footer height */
-        }
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 80px; /* Footer height */
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .showcase img {
-            max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
-            height: auto; /* Mantiene la proporción de la imagen */
-            max-height: 600px;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #008cba 3px solid;
-        }
-        header a {
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-        }
-        header li {
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-        header #branding {
-            float: left;
-        }
-        header #branding img {
-            height: 60px;
-        }
-        header nav {
-            float: right;
-            margin-top: 10px;
-        }
-        header nav ul li.current a {
-            text-decoration: underline; /* This will underline the text */
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .showcase {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 600px;
-            padding: 0 50px;
-            background: url('path_to_your_background_image.jpg') no-repeat right center / cover;
-        }
-        .showcase .showcase-text {
-            max-width: 50%;
-            margin-right: 20px;
-        }
-        .showcase h1 {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-        .showcase p {
-            font-size: 20px;
-        }
-        .features {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
-        .features section {
-            width: 33.3333%;
-            padding: 0 25px 0 35px;
-            box-sizing: border-box;
-        }
-        .features h2 {
-            font-size: 20px;
-            color: #333;
-        }
-        .features p {
-            font-size: 16px;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <img src="https://ivis.es/wp-content/uploads/2023/icons.werify/logo_werify_white.svg" alt="Werify Logo">
+    <%- include('components/header', {lng: lng}) %>
+
+        <div class="content">
+            <div class="showcase">
+                <div class="showcase-text">
+                    <h1><%= t('HOME.SHOW-CASE.TITLE') %></h1>
+                    <p><%= t('HOME.SHOW-CASE.PARAGRAPH') %></p>
+                </div>
+
+                <img src="/assets/img/ssi_credentials.png" alt="SSI Related Image">
+
+
             </div>
-            <nav>
-                <ul>
-                    <li class="current"><a href="home">Home</a></li>
-                    <% if (sessionExists) { %>
-                        <li><a href="private_area">Private Area</a></li>
-                        <li><a href="logout">Logout</a></li>
-                    <% } else { %>
-                        <li><a href="#" onclick="redirectToRegistry()">Registry</a></li>
-                        <li><a href="#" onclick="redirectToLogin()">Login</a></li>
-                    <% } %>
-                    <!-- <li><a href="contact.html">Contact</a></li> -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="content">
-        <div class="showcase">
-            <div class="showcase-text">
-                <h1>Revolutionizing Credential Verification with SSI</h1>
-                <p>Deploying Quick Verification Points for Self-Sovereign Identity Credentials</p>
+            <div class="features">
+                <section>
+                    <h2><%= t('HOME.FEATURES.FEATURE-1.TITLE') %></h2>
+                    <p><%= t('HOME.FEATURES.FEATURE-1.PARAGRAPH') %></p>
+                </section>
+                <section>
+                    <h2><%= t('HOME.FEATURES.FEATURE-2.TITLE') %></h2>
+                    <p><%= t('HOME.FEATURES.FEATURE-2.PARAGRAPH') %></p>
+                </section>
+                <section>
+                    <h2><%= t('HOME.FEATURES.FEATURE-3.TITLE') %></h2>
+                    <p><%= t('HOME.FEATURES.FEATURE-3.PARAGRAPH') %></p>
+                </section>
+                <section>
+                    <h2><%= t('HOME.FEATURES.FEATURE-4.TITLE') %></h2>
+                    <p><%= t('HOME.FEATURES.FEATURE-4.PARAGRAPH') %></p>
+                </section>
             </div>
-
-            <img src="/assets/img/ssi_credentials.png" alt="SSI Related Image">
-
-
         </div>
-        <div class="features">
-            <section>
-                <h2>Multi-Credential Wallet Management</h2>
-                <p>Holders will carry multiple credentials in their wallet, issued by different issuers.</p>
-            </section>
-            <section>
-                <h2>Flexible Business Process Scheduling</h2>
-                <p>Business processes need a versatile rule scheduler to request different VCs and capture attributes.</p>
-            </section>
-            <section>
-                <h2>Dynamic Deployment of Werify Points</h2>
-                <p>High-performance Werify points must be dynamically deployed for in-person and remote processes.</p>
-            </section>
-            <section>
-                <h2>VC Integration in Business Applications</h2>
-                <p>Business applications need VC integration to perform authentication and acquire data.</p>
-            </section>
-        </div>
-    </div>
-    
-    <footer class="footer">
-        <p>Werify Solutions &copy; 2023</p>
-    </footer>
-    <script src="/js/home.js"></script>
+
+        <%- include('components/footer') %>
+
 </body>
+
 </html>
