@@ -26,4 +26,7 @@ COPY src/public ./dist/public
 
 COPY src/views ./dist/views
 
+COPY src/locales ./dist/locales
+
+
 CMD ["node", "dist/server.js"]
