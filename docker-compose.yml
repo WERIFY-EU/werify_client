@@ -1,16 +1,9 @@
 version: '3.8'
 services:
-<<<<<<< HEAD
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-=======
   web:
     build:
       context: .
       target: production
->>>>>>> main
     ports:
       - "3002:3002"
     depends_on:
@@ -18,15 +11,6 @@ services:
 
   mongo:
     image: mongo:latest
-    volumes:
-      - mongo_data:/var/lib/mongo
     ports:
       - "27017:27017"
-<<<<<<< HEAD
-    command: ["--config", "/etc/mongo/mongod.conf"]
-    
-volumes:
-  mongo_data:
-=======
     restart: always
->>>>>>> main

@@ -39,7 +39,10 @@ router.get('/certificate', async (req, res) => {
           }
       }
 
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        executablePath: '/opt/google/chrome/google-chrome',
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      });
       const page = await browser.newPage();
 
        // Render the EJS template with your data
