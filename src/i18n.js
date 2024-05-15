@@ -10,7 +10,7 @@ i18next
   .init({
     fallbackLng: 'en',
     backend: {
-      loadPath: __dirname + '/../locales/{{lng}}/{{ns}}.json',
+      loadPath: __dirname + '/locales/{{lng}}/{{ns}}.json',
     },
     detection: {
       order: ['cookie', 'querystring', 'header'],
