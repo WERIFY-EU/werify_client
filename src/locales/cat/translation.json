@@ -1,0 +1,54 @@
+{
+    "HEADER": {
+        "MENU-1": "INICIO",
+        "MENU-2": "REGISTRO",
+        "MENU-3": "INICIAR SESIÓN",
+        "MENU-4": "EL MEU CERTIFICAT"
+    },
+    "HOME": {
+        "SHOW-CASE": {
+            "TITLE": "Revolucionant la Verificació de Credencials amb SSI",
+            "PARAGRAPH": "Implementació dels punts de verificació ràpida per a credencials d'identitat sobirana"
+        },
+        "FEATURES": {
+            "FEATURE-1": {
+                "TITLE": "Sol·licituds Multicredencial, multiatribut",
+                "PARAGRAPH": "Els titulars portaran múltiples credencials a la seva cartera, emeses per diferents emissors."
+            },
+            "FEATURE-2": {
+                "TITLE": "Programació sense codi de Regles de verificació i captura de dades",
+                "PARAGRAPH": "Els processos de negoci necessiten un programador de regles versàtils per sol·licitar diferents VC i capturar atributs."
+            },
+            "FEATURE-3": {
+                "TITLE": "Implementació Dinàmica dels Punts de Verificació",
+                "PARAGRAPH": "els punts de verificació d'alt rendiment s'han d'implementar dinàmicament per a processos presencials i remots."
+            },
+            "FEATURE-4": {
+                "TITLE": "Integració de VC a Aplicacions Empresarials",
+                "PARAGRAPH": "Les aplicacions empresarials necessiten integrar les VC per fer autenticació i adquirir dades."
+            }
+        }
+    },
+    "SUCCESSFULL-REGISTRY": {
+        "TITLE": "Benvingut,",
+        "PARAGRAPH": "Felicitats pel teu registre! Ara teniu accés a l'exclusiva àrea privada. Simplement presenta les teves credencials de correu electrònic per ingressar. Estigues segur que el teu accés està protegit per l'avançada tecnologia d'Identitat Sobirana (SSI), que garanteix la teva privadesa i seguretat en aquest espai virtual exclusiu.",
+        "BUTTON": "Obtenir Credencial",
+        "BUTTON-CERTIFICATE": "Obtenir Certificat",
+        "MODAL": "Escaneja aquest codi QR per obtenir la teva credencial:",
+        "MODAL-FORM-NAME": "Nom",
+        "MODAL-FORM-LAST-NAME": "Cognom",
+        "MODAL-FORM-BUTTON": "Enviat"
+    },
+    "PRIVATE-AREA":{
+        "TITLE":"Bienvenido a tu Área Privada",
+        "SUB-TITLE": "Accés Segur Concedit",
+        "PARAGRAPH": "Ara et trobes a la teva exclusiva àrea privada, un espai on la teva privadesa i seguretat són les nostres principals prioritats. La teva entrada a l’àrea privada ha estat assegurada gràcies a l’avançada tecnologia d'Identitat Sobirana (SSI, per les sigles en anglès)."
+    },
+    "NOT-FOUND":{
+        "TITLE":"Ho sentim",
+        "PARAGRAPH": "Sembla que no estàs autoritzat per accedir a aquesta àrea."
+    },
+"AOC": {
+    "WELCOME": {}
+}
+}

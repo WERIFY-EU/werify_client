@@ -1,0 +1,31 @@
+<header>
+    <link rel="stylesheet" href="/css/header.css">
+    <div class="container">
+        <div id="branding">
+            <img src="https://ivis.es/wp-content/uploads/2023/icons.werify/logo_werify_white.svg" alt="Werify Logo">
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="/client/home"><%= t('HEADER.MENU-1') %></a></li>
+                <% if (sessionExists) { %>
+                    <li><a href="/client/private_area"><%= t('HEADER.MENU-2') %></a></li>
+                    <li><a href="/client/logout"><%= t('HEADER.MENU-3') %></a></li>
+                <% } else { %>
+                    <li><a href="#" onclick="redirectToRegistry()"><%= t('HEADER.MENU-2') %></a></li>
+                    <li><a href="#" onclick="redirectToLogin()"><%= t('HEADER.MENU-3') %></a></li>
+                <% } %>
+                <li><a href="#" onclick="redirectToShowCertificate()"><%= t('HEADER.MENU-4') %></a></li>
+                <li>
+                    <!-- Language Selector -->
+                    <select id="languageSelect" onchange="changeLanguage()">
+                        <option value="en" <%= lng === 'en' ? 'selected' : '' %>>English</option>
+                        <option value="es" <%= lng === 'es' ? 'selected' : '' %>>Español</option>
+                        <option value="cat" <%= lng === 'cat' ? 'selected' : '' %>>Català</option>
+                    </select>
+                </li>
+                <!-- <li><a href="contact.html">Contact</a></li> -->
+            </ul>
+        </nav>
+    </div>
+    <script src="/js/header.js"></script>
+</header>

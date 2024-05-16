@@ -1,0 +1,54 @@
+{
+    "HEADER": {
+        "MENU-1": "INICIO",
+        "MENU-2": "REGISTRO",
+        "MENU-3": "INICIAR SESIÓN",
+        "MENU-4": "MI CERTIFICADO"
+    },
+    "HOME": {
+        "SHOW-CASE": {
+            "TITLE": "Revolucionando la Verificación de Credenciales con SSI",
+            "PARAGRAPH": "Implementando Puntos de Verificación Rápida para Credenciales de Identidad Autosoberana"
+        },
+        "FEATURES": {
+            "FEATURE-1": {
+                "TITLE": "Gestión de Carteras Multicredencial",
+                "PARAGRAPH": "Los titulares llevarán múltiples credenciales en su cartera, emitidas por diferentes emisores"
+            },
+            "FEATURE-2": {
+                "TITLE": "Programación Flexible de Procesos Empresariales",
+                "PARAGRAPH": "Los procesos empresariales necesitan un programador de reglas versátil para solicitar diferentes VCs y capturar atributos"
+            },
+            "FEATURE-3": {
+                "TITLE": "Despliegue Dinámico de Puntos de Verificación",
+                "PARAGRAPH": "Los puntos de verificación de alto rendimiento deben desplegarse dinámicamente para procesos presenciales y remotos."
+            },
+            "FEATURE-4": {
+                "TITLE": "Integración de VC en Aplicaciones Empresariales",
+                "PARAGRAPH": "Las aplicaciones empresariales necesitan integración de VC para realizar autenticación y adquirir datos."
+            }
+        }
+    },
+    "SUCCESSFULL-REGISTRY": {
+        "TITLE": "Bienvenido,",
+        "PARAGRAPH": "¡Felicidades por tu registro exitoso! Ahora tienes acceso al área privada exclusiva. Simplemente presenta tu credencial de correo electrónico para entrar. Ten la seguridad de que tu acceso está protegido por la tecnología punta de Identidad Autosoberana (SSI), asegurando tu privacidad y seguridad en este espacio privilegiado.",
+        "BUTTON": "Obtener Credencial",
+        "BUTTON-CERTIFICATE": "Obtener Certificado",
+        "MODAL": "Escanea este código QR para obtener tu credencial:",
+        "MODAL-FORM-NAME": "Nombre",
+        "MODAL-FORM-LAST-NAME": "Apellido",
+        "MODAL-FORM-BUTTON": "Enviar"
+    },
+    "PRIVATE-AREA":{
+        "TITLE":"Bienvenido a Tu Área Privada,",
+        "SUB-TITLE": "Acceso Seguro Concedido",
+        "PARAGRAPH": "¡Felicidades! Ahora estás en tu área privada exclusiva, un espacio donde tu privacidad y seguridad son nuestras principales prioridades. Tu entrada exitosa aquí fue asegurada a través de la tecnología avanzada de Identidad Autosoberana (SSI)."
+    },
+    "NOT-FOUND":{
+        "TITLE":"Lo sentimos",
+        "PARAGRAPH": "Parece que no estás autorizado para acceder a esta área."
+    },
+"AOC": {
+    "WELCOME": {}
+}
+}

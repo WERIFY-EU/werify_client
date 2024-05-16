@@ -1,0 +1,45 @@
+header {
+    background: #333;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #008cba 3px solid;
+}
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+header ul {
+    padding: 0;
+    list-style: none;
+}
+header li {
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+header #branding {
+    float: left;
+}
+header #branding img {
+    height: 60px;
+}
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+header nav ul li.current a {
+    text-decoration: underline; /* This will underline the text */
+}
+.language-selector {
+    float: right; /* Or position it as per your design */
+    margin: 10px;
+    padding: 5px;
+}
+
+.language-selector select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

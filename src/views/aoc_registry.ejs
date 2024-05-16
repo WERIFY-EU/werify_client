@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Werify - Soluciones SSI</title>
+    <style>
+        html {
+            height: 100%;
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            position: relative;
+            min-height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        .content {
+            flex: 1;
+            padding-bottom: 80px; /* Equal to footer height */
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px; /* Footer height */
+            background: #fd795f;
+            color: #000;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .showcase img {
+            max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+            max-height: 600;
+        }
+        header {
+            background: #fd795f;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #008cba 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding img {
+            height: 60px;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header nav ul li.current a {
+            text-decoration: underline; /* This will underline the text */
+        }
+
+        #branding {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Adjusts the space between the images */
+        }
+
+        #branding img {
+            max-height: 50px; /* Makes the images smaller */
+            width: auto; /* Maintains the aspect ratio */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .showcase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 300px;
+            padding: 0 50px;
+            background: url('path_to_your_background_image.jpg') no-repeat right center / cover;
+        }
+        .showcase .showcase-text {
+            max-width: 50%;
+            margin-right: 20px;
+            margin-left: 200px;
+        }
+        .showcase h1 {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+        .showcase p {
+            font-size: 20px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .features section {
+            width: 33.3333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        .features h2 {
+            font-size: 24px;
+            color: #333;
+        }
+        .features p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        #showQrButton {
+            background-color: #fd795f; /* Color de fondo */ 
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Padding */
+            border: none; /* Elimina el borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor */
+            font-size: 16px; /* Tamaño del texto */
+            transition: background-color 0.3s ease; /* Transición suave al cambiar el color */
+            display: block; /* Hace que el botón sea un bloque, permitiendo alinear a la derecha */
+            margin-top: 40px; /* Ajusta a tu preferencia para mover hacia abajo */
+            margin-right: 0; /* Alinea a la derecha */
+            margin-left: auto; /* Alinea a la derecha */
+        
+        }
+        
+        #showQrButton:hover {
+            background-color: #fd795f; /* Color al pasar el mouse */
+        }
+        
+        #showQrButton i {
+            margin-right: 8px; /* Espacio entre el icono y el texto */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="http://ivis.es/wp-content/uploads/2024/03/Valldenfort2.png" alt="Werify Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/ebsi/home"><%= t('HEADER.MENU-1') %></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="showcase">
+            <div class="showcase-text">
+                <h1>Registry Area</h1>
+                <p>To register, we kindly request you to provide your handicapped credentials. This step ensures that our exclusive parking spaces are preserved for those who truly need them, aligning with our commitment to making city travel more accessible for everyone.</p>
+                <button id="showQrButton" onclick="redirectToRegistryAOC()"><i class="fa fa-address-book-o"></i>Sign Up</button>
+            </div>
+
+            <img src="/assets/img/registry2.png" alt="Segure Registry">
+
+
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>City Services Access &copy; 2023</p>
+    </footer>
+    <script src="/js/aoc.js"></script>
+</body>
+</html>

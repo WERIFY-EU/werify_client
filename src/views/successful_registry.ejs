@@ -1,155 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Werify - Soluciones SSI</title>
-    <style>
-        html {
-            height: 100%;
-            box-sizing: border-box;
-        }
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-        body {
-            position: relative;
-            min-height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Arial', sans-serif;
-            background-color: #fff;
-            color: #333;
-        }
-        .content {
-            flex: 1;
-            padding-bottom: 80px; /* Equal to footer height */
-        }
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 80px; /* Footer height */
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .showcase img {
-            max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
-            height: auto; /* Mantiene la proporción de la imagen */
-            max-height: 600px;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #008cba 3px solid;
-        }
-        header a {
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-        }
-        header li {
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-        header #branding {
-            float: left;
-        }
-        header #branding img {
-            height: 60px;
-        }
-        header nav {
-            float: right;
-            margin-top: 10px;
-        }
-        header nav ul li.current a {
-            text-decoration: underline; /* This will underline the text */
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .showcase {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 600px;
-            padding: 0 50px;
-            background: url('path_to_your_background_image.jpg') no-repeat right center / cover;
-        }
-        .showcase .showcase-text {
-            max-width: 50%;
-            margin-right: 20px;
-        }
-        .showcase h1 {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-        .showcase p {
-            font-size: 20px;
-        }
-        .features {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
-        .features section {
-            width: 33.3333%;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-        .features h2 {
-            font-size: 24px;
-            color: #333;
-        }
-        .features p {
-            font-size: 16px;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/successfull_registry.css">
 </head>
+
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <img src="https://ivis.es/wp-content/uploads/2023/icons.werify/logo_werify_white.svg" alt="Werify Logo">
+    <%- include('components/header', {lng: lng}) %>
+
+        <div class="content">
+            <div class="showcase">
+                <div class="showcase-text">
+                    <h1>
+                        <%= t('SUCCESSFULL-REGISTRY.TITLE') %>
+                            <%= user.firstName %>
+                                <%= user.familyName %>!
+                    </h1>
+                    <p>
+                        <%= t('SUCCESSFULL-REGISTRY.PARAGRAPH') %>
+                    </p>
+                    <button id="showQrButton"><i class="fa fa-id-card-o"></i><%= t('SUCCESSFULL-REGISTRY.BUTTON') %></button>
+                    <button id="getCredButton"><i class="fa fa-address-card-o"></i>
+                        <%= t('SUCCESSFULL-REGISTRY.BUTTON-CERTIFICATE') %>
+                    </button>
+                </div>
+
+                <img src="/assets/img/registry.png" alt="Segure Registry">
+
+
             </div>
-            <nav>
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="#" onclick="redirectToLogin()">Login</a></li>
-                </ul>
-            </nav>
         </div>
-    </header>
 
-    <div class="content">
-        <div class="showcase">
-            <div class="showcase-text">
-                <h1>Welcome, <%= user.firstName %> <%= user.familyName %>!</h1>
-                <p>Congratulations on your successful registration! You are now granted access to the exclusive private area. Simply present your email credential for entry. Rest assured, your access is safeguarded by the cutting-edge Self-Sovereign Identity (SSI) technology, ensuring your privacy and security in this privileged space</p>
+        <%- include('components/footer') %>
+
+            <!-- The Modal -->
+            <div id="qrModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>
+                        <%= t('SUCCESSFULL-REGISTRY.MODAL') %>
+                    </p>
+                    <img id="qrImage" src="" alt="QR Code">
+                </div>
             </div>
 
-            <img src="/assets/img/registry.png" alt="Segure Registry">
+            <div id="credModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="closeCred">&times;</span>
+                    <form id="credForm">
+                        <input type="text" id="credName" name="credName"
+                            placeholder="<%= t('SUCCESSFULL-REGISTRY.MODAL-FORM-NAME') %>" required>
+                        <input type="text" id="credLastName" name="credLastName"
+                            placeholder="<%= t('SUCCESSFULL-REGISTRY.MODAL-FORM-LAST-NAME') %>" required>
+                        <button type="submit" id="generateQrButton">
+                            <%= t('SUCCESSFULL-REGISTRY.MODAL-FORM-BUTTON') %>
+                        </button>
+                    </form>
+                    <p id="formFeedback"></p>
+                    <img id="qrImageCertificate" src="" alt="QR Code">
+                </div>
+            </div>
 
+            <script>
+                var userData = {
+                    firstName: "<%= user.firstName %>",
+                    familyName: "<%= user.familyName %>",
+                    email: "<%= user.email %>",
+                    dateOfBirth: "<%= user.dateOfBirth %>",
+                    phone: "<%= user.phone %>",
+                    company: "Werify",
+                    position: "Guest",
+                };
 
-        </div>
-    </div>
-    
-    <footer class="footer">
-        <p>Werify Solutions &copy; 2023</p>
-    </footer>
-    <script src="/js/home.js"></script>
+                document.getElementById("showQrButton").onclick = function () {
+                    var modal = document.getElementById("qrModal");
+                    var span = document.getElementsByClassName("close")[0];
+
+                    // Close modal when user clicks on <span> (x)
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                    };
+
+                    // Close modal when user clicks outside of it
+                    window.onclick = function (event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    };
+
+                    // Setup the fetch request options for a POST request
+                    fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr', {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: "asdfasd",
+                            firstName: userData.firstName,
+                            familyName: userData.familyName,
+                            email: userData.email,
+                            dateOfBirth: userData.dateOfBirth,
+                            company: userData.company,
+                            position: userData.position,
+                        })
+                    })
+                        .then(response => response.text()) // Assuming the response is JSON containing base64qr
+                        .then(data => {
+                            document.getElementById("qrImage").src = `data:image/png;base64,${data}`;
+                            modal.style.display = "block";
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                };
+
+                document.getElementById("getCredButton").onclick = function () {
+                    var credModal = document.getElementById("credModal");
+                    credModal.style.display = "block";
+                };
+                
+                var closeCredSpan = document.getElementsByClassName("closeCred")[0];
+                closeCredSpan.onclick = function () {
+                    document.getElementById("credModal").style.display = "none";
+                };
+                
+                window.onclick = function (event) {
+                    var credModal = document.getElementById("credModal");
+                    if (event.target == credModal) {
+                        credModal.style.display = "none";
+                    }
+                };                
+
+                document.getElementById("credForm").onsubmit = function (event) {
+                    event.preventDefault();
+                    var certificateData = {
+                        "name": document.getElementById("credName").value,
+                        "lastName": document.getElementById("credLastName").value,
+                        "email": userData.email,
+                        "phone": userData.phone
+                    }
+
+                    fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr/werify_certificat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(
+                            certificateData
+                        )
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById("qrImageCertificate").src = `data:image/png;base64,${data}`;
+                            document.getElementById("formFeedback").innerText = "QR Code Generated Successfully!";
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                            document.getElementById("formFeedback").innerText = "Failed to generate QR Code.";
+                        });
+
+                    //document.getElementById("credModal").style.display = "none";
+                };
+            </script>
 </body>
+
 </html>

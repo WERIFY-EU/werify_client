@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models/dataModel');
 const { validateSession, clearSession } = require('../utils/session');
 
+
 router.get('/home', (req, res) => {
   const token = req.query.token;
 
@@ -42,24 +43,25 @@ router.get('/home', (req, res) => {
           }
       }
 
-      res.render('not_found', { sessionExists: !!req.session.jwt });
+      res.render('not_found', { lng: req.language,sessionExists: !!req.session.jwt });
     } catch (error) {
       console.log(error);
-      res.render('not_found', { sessionExists: !!req.session.jwt });
+      res.render('not_found', { lng: req.language,sessionExists: !!req.session.jwt });
     }
   } else {
-    res.render('home', { sessionExists: !!req.session.jwt });
+    res.render('home', { lng: req.language, sessionExists: !!req.session.jwt });
   }
 });
 
 router.get('/private_area', validateSession, (req, res) => {
-  res.render('private_area', { sessionExists: !!req.session.jwt });
+  res.render('private_area', { lng: req.language, sessionExists: !!req.session.jwt });
 });
 
 router.get('/registry', (req, res) => {
   const token = req.query.token;
   const userDetails = {
     email: '', 
+    phone: '',
     firstName: '', 
     familyName: '',
     dateOfBirth: '',
@@ -84,6 +86,9 @@ router.get('/registry', (req, res) => {
       for (const item of storedValues) {
           if (item.pointer === "/credentialSubject/email" || item.pointer === "/credentialSubject/correo-e") {
             userDetails.email = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/phone") {
+            userDetails.phone = item.value.trim();
           }
           if (item.pointer === "/credentialSubject/firstName"  || item.pointer === "/credentialSubject/Nombre") {
             userDetails.firstName = item.value.trim();
@@ -113,6 +118,7 @@ router.get('/registry', (req, res) => {
       .then(() => {
         // Handle successful save
         res.render('successful_registry', { 
+          lng: req.language,
           sessionExists: !!req.session.jwt, 
           user: userDetails 
         });
@@ -120,15 +126,15 @@ router.get('/registry', (req, res) => {
       .catch(error => {
         // Handle error
         console.error(error);
-        res.render('not_found', { sessionExists: !!req.session.jwt });
+        res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
       });
 
     } catch (error) {
       console.log(error);
-      res.render('not_found', { sessionExists: !!req.session.jwt });
+      res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
     }
   } else {
-    res.render('home', { sessionExists: !!req.session.jwt });
+    res.render('home', { lng: req.language, sessionExists: !!req.session.jwt });
   }
 });
 
@@ -139,6 +145,7 @@ router.get('/logout', clearSession, (req, res) => {
 router.get('/not_found', (req, res) => {
   res.redirect('/client/not_found');
 });
+
 
 router.get('/successful_registry', (req, res) => {
   res.redirect('/client/successful_registry');

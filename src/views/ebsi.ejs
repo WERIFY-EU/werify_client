@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Werify - Soluciones SSI</title>
+    <style>
+        html {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            position: relative;
+            min-height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .content {
+            flex: 1;
+            padding-bottom: 80px;
+            /* Equal to footer height */
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            /* Footer height */
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .showcase img {
+            max-width: 100%;
+            /* Asegura que la imagen no sea más ancha que su contenedor */
+            height: auto;
+            /* Mantiene la proporción de la imagen */
+            max-height: 600px;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #008cba 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding img {
+            height: 60px;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header nav ul li.current a {
+            text-decoration: underline; /* This will underline the text */
+        }
+
+        #branding {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Adjusts the space between the images */
+        }
+
+        #branding img {
+            max-height: 50px; /* Makes the images smaller */
+            width: auto; /* Maintains the aspect ratio */
+        }
+        #branding img:nth-of-type(3) {
+            max-height: 33px; /* Adjust this value as needed */
+            width: auto; /* Maintains aspect ratio */
+        }
+
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .showcase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 600px;
+            padding: 0 50px;
+            background: url('path_to_your_background_image.jpg') no-repeat right center / cover;
+        }
+
+        .showcase .showcase-text {
+            max-width: 50%;
+            margin-right: 20px;
+            margin-left: 200px;
+        }
+
+        .showcase h1 {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .showcase p {
+            font-size: 20px;
+        }
+
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+            /* Distributes children with space around them */
+            align-items: center;
+            padding: 20px;
+            /* Adds some padding around the content area */
+            box-sizing: border-box;
+            /* Ensures padding does not add to the total width */
+        }
+
+        .image-container {
+            position: relative;
+            width: 30%;
+            padding-top: 20%; /* Adjusted from 30% to 20% to reduce vertical size */
+        }
+        
+        .image-container a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60%; /* Adjust this value based on your needs */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto; /* Ensure the image's height is automatically adjusted */
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="https://ec.europa.eu/digital-building-blocks/sites/download/attachments/468026266/logo-ebsi-white.png?api=v2" alt="EBSI Logo">
+                <img src="https://ivis.es/wp-content/uploads/2023/icons.werify/logo_werify_white.svg" alt="Werify Logo">
+                <img src="https://try.vidchain.net/demo/static/media/3531224b-vidchain.1ad1bd94.svg" alt="VidChain Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/ebsi/home"><%= t('HEADER.MENU-1') %></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content">
+
+
+
+
+
+        <div class="content">
+            <div class="image-container">
+                <a href="/i2cat/registry">
+                    <img src="/assets/img/i2cat-logotip.png" alt="I2CAT Logo">
+                </a>
+            </div>
+            <div class="image-container">
+                <a href="/aoc/registry">
+                    <img src="http://ivis.es/wp-content/uploads/2024/03/Valldenfort2.png" alt="AOC Logo">
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>City Services Access &copy; 2023</p>
+    </footer>
+    <script src="/js/home.js"></script>
+</body>
+
+</html>
