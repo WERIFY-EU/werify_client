@@ -120,7 +120,8 @@ router.get('/registry', (req, res) => {
         res.render('successful_registry', { 
           lng: req.language,
           sessionExists: !!req.session.jwt, 
-          user: userDetails 
+          user: userDetails,
+          ISSUER_BASE_URL: process.env.ISSUER_BASE_URL,
         });
       })
       .catch(error => {
