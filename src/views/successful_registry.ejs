@@ -69,6 +69,7 @@
             </div>
 
             <script>
+                const IssuerBaseUrl = "<%= ISSUER_BASE_URL %>";
                 var userData = {
                     firstName: "<%= user.firstName %>",
                     familyName: "<%= user.familyName %>",
@@ -96,7 +97,7 @@
                     };
 
                     // Setup the fetch request options for a POST request
-                    fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr', {
+                    fetch(`${IssuerBaseUrl}/generate_qr`, {
                         method: 'POST', // or 'PUT'
                         headers: {
                             'Content-Type': 'application/json',
@@ -147,7 +148,7 @@
                         "phone": userData.phone
                     }
 
-                    fetch('https://1tl0n57x-3005.eun1.devtunnels.ms/generate_qr/werify_certificat', {
+                    fetch(`${IssuerBaseUrl}/generate_qr/werify_certificat`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
