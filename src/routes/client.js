@@ -144,7 +144,7 @@ router.get('/logout', clearSession, (req, res) => {
 });
 
 router.get('/not_found', (req, res) => {
-  res.redirect('/client/not_found');
+  res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
 });
 
 
