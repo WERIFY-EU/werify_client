@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const puppeteer = require('puppeteer');
+const QRCode = require('qrcode');
 
 router.get('/certificate', async (req, res) => {
   const token = req.query.token;
@@ -11,6 +12,7 @@ router.get('/certificate', async (req, res) => {
     name: '', 
     lastName: ''
   };
+  var url = "https://issuer-staging.werify.eu/is-credential-revoked/?credentialId=";
   if (token) {
     const encodedPublicKey = process.env.PUBLIC_KEY;
     const decodedPublicKey = encodedPublicKey.replace(/\\n/g, '\n');
@@ -37,6 +39,9 @@ router.get('/certificate', async (req, res) => {
           if (item.pointer === "/credentialSubject/lastName") {
             certificateDetails.lastName = item.value.trim().toUpperCase();
           }
+          if (item.pointer === "/id") {
+            url = url + item.value.trim();
+          }
       }
 
       const browser = await puppeteer.launch({
@@ -45,10 +50,14 @@ router.get('/certificate', async (req, res) => {
       });
       const page = await browser.newPage();
 
+      
+      const qrImage = await QRCode.toDataURL(url);
+
        // Render the EJS template with your data
        res.render('certificate', { 
         lng: req.language,
-        certificate: certificateDetails 
+        certificate: certificateDetails,
+        qrImage:qrImage
     }, async (err, html) => {
         if (err) {
             console.error(err);
