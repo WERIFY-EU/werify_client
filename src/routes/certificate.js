@@ -12,7 +12,7 @@ router.get('/certificate', async (req, res) => {
     name: '', 
     lastName: ''
   };
-  var url = "https://issuer-staging.werify.eu/is-credential-revoked/?credentialId=";
+  var url = "https://issuer-staging.werify.eu/credential-details/?credentialId=";
   if (token) {
     const encodedPublicKey = process.env.PUBLIC_KEY;
     const decodedPublicKey = encodedPublicKey.replace(/\\n/g, '\n');
