@@ -57,6 +57,7 @@ router.get('/certificate', async (req, res) => {
        res.render('certificate', { 
         lng: req.language,
         certificate: certificateDetails,
+        qrUrl: url,
         qrImage:qrImage
     }, async (err, html) => {
         if (err) {
