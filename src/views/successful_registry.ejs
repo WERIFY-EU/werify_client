@@ -80,47 +80,7 @@
                     position: "Guest",
                 };
 
-                document.getElementById("showQrButton").onclick = function () {
-                    var modal = document.getElementById("qrModal");
-                    var span = document.getElementsByClassName("close")[0];
-
-                    // Close modal when user clicks on <span> (x)
-                    span.onclick = function () {
-                        modal.style.display = "none";
-                    };
-
-                    // Close modal when user clicks outside of it
-                    window.onclick = function (event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                        }
-                    };
-
-                    // Setup the fetch request options for a POST request
-                    fetch(`${IssuerBaseUrl}/generate_qr`, {
-                        method: 'POST', // or 'PUT'
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            email: "asdfasd",
-                            firstName: userData.firstName,
-                            familyName: userData.familyName,
-                            email: userData.email,
-                            dateOfBirth: userData.dateOfBirth,
-                            company: userData.company,
-                            position: userData.position,
-                        })
-                    })
-                        .then(response => response.text()) // Assuming the response is JSON containing base64qr
-                        .then(data => {
-                            document.getElementById("qrImage").src = `data:image/png;base64,${data}`;
-                            modal.style.display = "block";
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
-                };
+                
 
                 document.getElementById("getCredButton").onclick = function () {
                     var credModal = document.getElementById("credModal");
@@ -170,6 +130,7 @@
                     //document.getElementById("credModal").style.display = "none";
                 };
             </script>
+            <script src="/js/script.js"></script>
 </body>
 
 </html>
