@@ -149,23 +149,6 @@ router.get('/not_found', (req, res) => {
 
 
 router.get('/successful_registry', (req, res) => {
-  const userDetails = {
-    email: 'aa', 
-    phone: 'bb',
-    firstName: 'cc', 
-    familyName: 'dd',
-    dateOfBirth: 'ee',
-    DNI:'ff',
-    NIF_del_organismo:'gg',
-    Organismo:'hh',
-    Puesto:'ii',
-  };
-  res.render('successful_registry', { 
-    lng: req.language,
-    sessionExists: !!req.session.jwt, 
-    user: userDetails,
-    ISSUER_BASE_URL: process.env.ISSUER_BASE_URL,
-  });
   res.redirect('/client/successful_registry');
 });
 
