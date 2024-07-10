@@ -99,36 +99,7 @@
                     }
                 };                
 
-                document.getElementById("credForm").onsubmit = function (event) {
-                    event.preventDefault();
-                    var certificateData = {
-                        "name": document.getElementById("credName").value,
-                        "lastName": document.getElementById("credLastName").value,
-                        "email": userData.email,
-                        "phone": userData.phone
-                    }
-
-                    fetch(`${IssuerBaseUrl}/generate_qr/werify_certificat`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(
-                            certificateData
-                        )
-                    })
-                        .then(response => response.text())
-                        .then(data => {
-                            document.getElementById("qrImageCertificate").src = `data:image/png;base64,${data}`;
-                            document.getElementById("formFeedback").innerText = "QR Code Generated Successfully!";
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                            document.getElementById("formFeedback").innerText = "Failed to generate QR Code.";
-                        });
-
-                    //document.getElementById("credModal").style.display = "none";
-                };
+                
             </script>
             <script src="/js/script.js"></script>
 </body>

@@ -149,23 +149,6 @@ router.get('/not_found', (req, res) => {
 
 
 router.get('/successful_registry', (req, res) => {
-  const userDetails = {
-    email: 'aa', 
-    phone: 'bb',
-    firstName: 'cc', 
-    familyName: 'dd',
-    dateOfBirth: 'ee',
-    DNI:'ff',
-    NIF_del_organismo:'gg',
-    Organismo:'hh',
-    Puesto:'ii',
-  };
-  res.render('successful_registry', { 
-    lng: req.language,
-    sessionExists: !!req.session.jwt, 
-    user: userDetails,
-    ISSUER_BASE_URL: process.env.ISSUER_BASE_URL,
-  });
   res.redirect('/client/successful_registry');
 });
 
@@ -178,20 +161,14 @@ function checkUserExists(email) {
   });
 }
 
-router.get('/generate-token', validateSession, (req, res) => {
+router.get('/generate-token', (req, res) => {
   const payload = {
       name: "werify_Kit"
   };
-  const encodedPrivateOwnKey0 = process.env.PUBLIC_OWN_KEY;
-  const decodedPrivateOwnKey0 = encodedPrivateOwnKey0.replace(/\\n/g, '\n');
-  console.log(decodedPrivateOwnKey0);
-
   const encodedPrivateOwnKey = process.env.PRIVATE_OWN_KEY;
   const decodedPrivateOwnKey = encodedPrivateOwnKey.replace(/\\n/g, '\n');
-  console.log(decodedPrivateOwnKey);
   const token = jwt.sign(payload, decodedPrivateOwnKey, { algorithm: 'ES256', expiresIn: '1h' });
   
-  console.log(token);
   res.json({ token });
 });
 
