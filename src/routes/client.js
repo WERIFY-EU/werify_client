@@ -182,16 +182,10 @@ router.get('/generate-token', (req, res) => {
   const payload = {
       name: "werify_Kit"
   };
-  const encodedPrivateOwnKey0 = process.env.PUBLIC_OWN_KEY;
-  const decodedPrivateOwnKey0 = encodedPrivateOwnKey0.replace(/\\n/g, '\n');
-  console.log(decodedPrivateOwnKey0);
-
   const encodedPrivateOwnKey = process.env.PRIVATE_OWN_KEY;
   const decodedPrivateOwnKey = encodedPrivateOwnKey.replace(/\\n/g, '\n');
-  console.log(decodedPrivateOwnKey);
   const token = jwt.sign(payload, decodedPrivateOwnKey, { algorithm: 'ES256', expiresIn: '1h' });
   
-  console.log(token);
   res.json({ token });
 });
 

@@ -50,3 +50,43 @@ document.getElementById("showQrButton").onclick = function () {
         console.error('Error:', error);
     });
 };
+
+document.getElementById("credForm").onsubmit = function (event) {
+    event.preventDefault();
+    var certificateData = {
+        "name": document.getElementById("credName").value,
+        "lastName": document.getElementById("credLastName").value,
+        "email": userData.email,
+        "phone": userData.phone
+    }
+
+
+    fetch('/client/generate-token')
+    .then(response => response.json())
+    .then(data => {
+        const generatedToken = data.token;
+        fetch(`${IssuerBaseUrl}/generate_qr/werify_certificat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${generatedToken}`
+            },
+            body: JSON.stringify(
+                certificateData
+            )
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("qrImageCertificate").src = `data:image/png;base64,${data}`;
+                document.getElementById("formFeedback").innerText = "QR Code Generated Successfully!";
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById("formFeedback").innerText = "Failed to generate QR Code.";
+            });
+
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+};
