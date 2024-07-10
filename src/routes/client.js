@@ -178,7 +178,7 @@ function checkUserExists(email) {
   });
 }
 
-router.get('/generate-token', validateSession, (req, res) => {
+router.get('/generate-token', (req, res) => {
   const payload = {
       name: "werify_Kit"
   };
