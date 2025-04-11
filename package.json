@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.2",
     "puppeteer": "^22.8.0",
+    "qrcode": "^1.5.3",
     "stream-browserify": "^3.0.0",
     "webpack": "^5.91.0"
   },

@@ -144,7 +144,7 @@ router.get('/logout', clearSession, (req, res) => {
 });
 
 router.get('/not_found', (req, res) => {
-  res.redirect('/client/not_found');
+  res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
 });
 
 
@@ -160,5 +160,16 @@ function checkUserExists(email) {
     throw error; // Re-throw the error to handle it in the calling function
   });
 }
+
+router.get('/generate-token', (req, res) => {
+  const payload = {
+      name: "werify_Kit"
+  };
+  const encodedPrivateOwnKey = process.env.PRIVATE_OWN_KEY;
+  const decodedPrivateOwnKey = encodedPrivateOwnKey.replace(/\\n/g, '\n');
+  const token = jwt.sign(payload, decodedPrivateOwnKey, { algorithm: 'ES256', expiresIn: '1h' });
+  
+  res.json({ token });
+});
 
 module.exports = router;
