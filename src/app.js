@@ -20,6 +20,11 @@ require('dotenv').config();
 app.use(express.text());
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(middleware.handle(i18next));
+app.use((req, res, next) => {
+  res.locals.lng = req.language || 'en';
+  next();
+});
+
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

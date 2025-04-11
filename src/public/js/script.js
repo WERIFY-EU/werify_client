@@ -22,7 +22,7 @@ document.getElementById("showQrButton").onclick = function () {
         const generatedToken = data.token;
 
         // Setup the fetch request options for a POST request
-        fetch(`${IssuerBaseUrl}/generate_qr`, {
+        fetch(`${IssuerBaseUrl}/generate_qr/WerifyCredentialKit`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ document.getElementById("credForm").onsubmit = function (event) {
     .then(response => response.json())
     .then(data => {
         const generatedToken = data.token;
-        fetch(`${IssuerBaseUrl}/generate_qr/werify_certificat`, {
+        fetch(`${IssuerBaseUrl}/generate_qr/WerifyCertificat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ i18next
       lookupCookie: 'i18next',
       caches: ['cookie'],
       cookieMinutes: 525600,
-      cookieDomain: 'https://1tl0n57x-3002.eun1.devtunnels.ms',
+      cookieDomain: 'https://8lh8dmll-3002.brs.devtunnels.ms/',
       cookiePath: '/',
     },
   });
