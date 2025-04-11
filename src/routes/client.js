@@ -25,11 +25,10 @@ router.get('/home', (req, res) => {
       // Find the email value
       for (const item of storedValues) {
           if (item.pointer === "/credentialSubject/email"  || item.pointer === "/credentialSubject/correo-e") {
-
             return checkUserExists(item.value.trim())
               .then(exists => {
                 if (exists) {
-                  const newToken = jwt.sign({ user: decoded.user }, decodedPrivateOwnKey, { algorithm: 'ES256', expiresIn: '1h' });
+                  const newToken = jwt.sign({ user: decoded.user }, decodedPrivateOwnKey, { algorithm: 'ES256', expiresIn: '24h' });
                   req.session.jwt = newToken;
                   return res.redirect('/client/private_area');
                 } else {
@@ -71,6 +70,7 @@ router.get('/registry', (req, res) => {
     Puesto:'',
   };
   if (token) {
+    console.log("entro token");
     const encodedPublicKey = process.env.PUBLIC_KEY;
     const decodedPublicKey = encodedPublicKey.replace(/\\n/g, '\n');
     try {
@@ -167,7 +167,7 @@ router.get('/generate-token', (req, res) => {
   };
   const encodedPrivateOwnKey = process.env.PRIVATE_OWN_KEY;
   const decodedPrivateOwnKey = encodedPrivateOwnKey.replace(/\\n/g, '\n');
-  const token = jwt.sign(payload, decodedPrivateOwnKey, { algorithm: 'ES256', expiresIn: '1h' });
+  const token = jwt.sign(payload, decodedPrivateOwnKey, { algorithm: 'ES256', expiresIn: '24h' });
   
   res.json({ token });
 });
