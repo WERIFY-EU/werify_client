@@ -1,4 +1,4 @@
-FROM node:20 as base
+FROM node:20 AS base
 
 LABEL com.centurylinklabs.watchtower.enable="true"
 
@@ -13,29 +13,26 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install google-chrome-stable -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
+
+COPY package.json yarn.lock ./
+RUN yarn install
+COPY . .
+RUN yarn build
 EXPOSE 3002
 
-
-
-FROM base as development
+# Stage: Development
+FROM base AS development
 
 RUN yarn add nodemon
-
 CMD ["npx", "nodemon", "src/server.js"]
 
+# Stage: Production
+FROM base AS production
 
-
-FROM base as production
-
-COPY node_modules ./node_modules
-
-COPY dist ./dist/
-
-COPY src/public ./dist/public
-
-COPY src/views ./dist/views
-
-COPY src/locales ./dist/locales
-
-
+WORKDIR /usr/src/app
+COPY --from=base /usr/src/app/node_modules ./node_modules
+COPY --from=base /usr/src/app/dist ./dist
+COPY --from=base /usr/src/app/src/public ./dist/public
+COPY --from=base /usr/src/app/src/views ./dist/views
+COPY --from=base /usr/src/app/src/locales ./dist/locales
 CMD ["node", "dist/server.js"]
