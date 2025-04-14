@@ -70,7 +70,6 @@ router.get('/registry', (req, res) => {
     Puesto:'',
   };
   if (token) {
-    console.log("entro token");
     const encodedPublicKey = process.env.PUBLIC_KEY;
     const decodedPublicKey = encodedPublicKey.replace(/\\n/g, '\n');
     try {

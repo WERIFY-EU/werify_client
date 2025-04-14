@@ -58,6 +58,8 @@ This demo is designed to help you easily integrate Werify into your app.
 3. A QR code is rendered.
 4. Scanning the QR allows the user to claim the credential in their wallet.
 5. The app provides a redirect to a **Werify Point** (e.g., register or login) using an `<a>` tag or JavaScript function.
+6. The Werify Point redirects back and sends the user's data to the app, where it is decoded and stored if valid.
+
 
 ---
 
@@ -132,6 +134,93 @@ async function redirectToRegistry() {
     const config = await getConfig();
     window.location.href = config.registryUrl;
 }
+```
+
+
+### Manage data redirected from the Werify Point
+
+After the user is redirected back from a Werify Point, you can extract their data from the `token` query parameter, verify it using your public key, and store or use it as needed:
+
+```javascript
+router.get('/registry', (req, res) => {
+  const token = req.query.token;
+  const userDetails = {
+    email: '', 
+    phone: '',
+    firstName: '', 
+    familyName: '',
+    dateOfBirth: '',
+    DNI:'',
+    NIF_del_organismo:'',
+    Organismo:'',
+    Puesto:'',
+  };
+
+  if (token) {
+    const encodedPublicKey = process.env.PUBLIC_KEY;
+    const decodedPublicKey = encodedPublicKey.replace(/\\n/g, '\n');
+    try {
+      const decoded = jwt.verify(token, decodedPublicKey, { algorithms: ['ES256'], ignoreNotBefore: true });
+      const decodedString = JSON.stringify(decoded);
+      const jsonPart = decodedString.substring(decodedString.indexOf('{'), decodedString.lastIndexOf('}') + 1);
+      const data = JSON.parse(jsonPart);
+      const storedValuesStr = data.stored_values.replace(/\\"/g, '"');
+
+      const storedValues = JSON.parse(storedValuesStr);
+
+      for (const item of storedValues) {
+          if (item.pointer === "/credentialSubject/email" || item.pointer === "/credentialSubject/correo-e") {
+            userDetails.email = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/phone") {
+            userDetails.phone = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/firstName"  || item.pointer === "/credentialSubject/Nombre") {
+            userDetails.firstName = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/familyName"  || item.pointer === "/credentialSubject/Apellido1") {
+            userDetails.familyName = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/dateOfBirth") {
+            userDetails.dateOfBirth = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/DNI") {
+            userDetails.DNI = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/NIF del organismo") {
+            userDetails.NIF_del_organismo = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/Organismo") {
+            userDetails.Organismo = item.value.trim();
+          }
+          if (item.pointer === "/credentialSubject/Puesto") {
+            userDetails.Puesto = item.value.trim();
+          }
+      }
+
+      const newUser = new User({ user: userDetails });
+      newUser.save()
+      .then(() => {
+        res.render('successful_registry', { 
+          lng: req.language,
+          sessionExists: !!req.session.jwt, 
+          user: userDetails,
+          ISSUER_BASE_URL: process.env.ISSUER_BASE_URL,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+        res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
+      });
+
+    } catch (error) {
+      console.log(error);
+      res.render('not_found', { lng: req.language, sessionExists: !!req.session.jwt });
+    }
+  } else {
+    res.render('home', { lng: req.language, sessionExists: !!req.session.jwt });
+  }
+});
 ```
 
 ---
