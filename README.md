@@ -1,72 +1,158 @@
-# Deployment Guide for werify_client Project
+# Werify Client – Deployment & Integration Guide
 
-This guide outlines the steps to deploy the werify_client project using Docker. The project requires a MongoDB database and uses environment variables to manage configuration settings.
+This application is a **demo** showcasing how to integrate **Werify** services to issue Verifiable Credentials, generate QR codes, and redirect to Werify Points.
 
-## Prerequisites
+---
 
-- Docker and Docker Compose installed on your system.
-- Basic knowledge of Docker and Node.js environments.
+## 🛠️ Deployment
 
-## Setup
+### Requirements
 
-### Step 1: Clone the Repository
+- Docker and Docker Compose installed.
+- Node.js and basic backend knowledge.
+- Clone this repository.
 
-Clone the project repository to your local machine. If the repository is private, ensure you have the necessary permissions.
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/WERIFY-EU/werify_client.git
 cd werify_client
 ```
-### Step 2: Create the .env File
 
-You must create a .env file in the root directory of the project. This file will contain environment variables required for the project's configuration.
+### 2. Configure environment variables
 
-Here are the variables you need to define:
-
- * MONGODB_URI: The URI for connecting to your MongoDB instance. For local development, you can use mongodb://mongo:27017/client_werifydb.
- * PORT: The port on which your Node.js application will run. For example, 3002.
- * PUBLIC_KEY: A public key for Werify. Replace this with your actual public key.
- * PRIVATE_OWN_KEY: Your private key. Ensure that it's formatted in a single line. 
- * LOGIN_URL=This is the URI for the Werify point that you have previously configured within the Werify platform.  You only need to specify the part of the URI that follows after "https://staging.werify.eu/#". Do not include "https://staging.werify.eu/#" in this variable. Example: "/werify_point_kiosk/sultry+silicon+prance+designate+bonehead".
- * REGISTRY_URL=This environment variable represents the URI for the Werify point that has been set up in advance on the Werify platform.  Only include the segment of the URI that comes after "https://staging.werify.eu/#". The initial part of the URL ("https://staging.werify.eu/#") should not be included in this variable. Example: "/werify_point_kiosk/traitor+tantrum+culinary+passport+humvee".
- 
- Example structure:
+Copy the `.env.example` file as `.env`:
 
 ```bash
-PRIVATE_OWN_KEY=-----BEGIN EC PRIVATE KEY-----\nYourPrivateKeyHere\n-----END EC PRIVATE KEY-----
+cp .env.example .env
 ```
 
- * PUBLIC_OWN_KEY: Your public key associated with the private key above. Format it in a single line as well. 
- Example structure:
+Edit the `.env` file with your credentials and appropriate configuration.
 
-```bash
-PUBLIC_OWN_KEY=-----BEGIN PUBLIC KEY-----\nYourPublicKeyHere\n-----END PUBLIC KEY-----
-```
+> **Important**: Check the `.env.example` file for detailed explanations of each variable.
 
-Your .env file should look something like this:
-
-```bash
-MONGODB_URI=mongodb://mongo:27017/client_werifydb
-PORT=3002
-PUBLIC_KEY=YourPublicKeyHere
-PRIVATE_OWN_KEY=YourPrivateKeyHere
-PUBLIC_OWN_KEY=YourPublicKeyHere
-LOGIN_URL=/werify_point_kiosk/sultry+silicon+prance+designate+bonehead
-REGISTRY_URL=/werify_point_kiosk/traitor+tantrum+culinary+passport+humvee
-```
-
-### Step 3: Build and Run with Docker
-After setting up the .env file, you can use Docker Compose to build and run your application.
+### 3. Start the application with Docker
 
 ```bash
 docker-compose up --build
 ```
 
-This command will build the Docker image for your Node.js application and start the services defined in your docker-compose.yml file.
-
-### Accessing the Application
+#### Accessing the Application
 Once the application is running, it will be accessible at http://localhost:[PORT], where [PORT] is the port number you specified in your .env file.
 
-### Additional Notes
+#### Additional Notes
  * Ensure that your keys (PRIVATE_OWN_KEY and PUBLIC_OWN_KEY) are kept secure and never shared publicly.
  * For production environments, additional security and configuration measures should be considered.
+
+
+---
+
+## ⚙️ Technical Integration
+
+This demo is designed to help you easily integrate Werify into your app.
+
+### Main flow
+
+1. The user fills out a form.
+2. A **Verifiable Credential** is generated.
+3. A QR code is rendered.
+4. Scanning the QR allows the user to claim the credential in their wallet.
+5. The app provides a redirect to a **Werify Point** (e.g., register or login) using an `<a>` tag or JavaScript function.
+
+---
+
+### Credential issuance + QR generation
+
+The following code snippet handles the issuance of the credential and renders the QR code:
+
+```javascript
+document.getElementById("credForm").onsubmit = function (event) {
+    event.preventDefault();
+    var certificateData = {
+        "name": document.getElementById("credName").value,
+        "lastName": document.getElementById("credLastName").value,
+        "email": userData.email,
+        "phone": userData.phone
+    }
+
+    fetch('/client/generate-token')
+    .then(response => response.json())
+    .then(data => {
+        const generatedToken = data.token;
+        fetch(`${IssuerBaseUrl}/generate_qr/WerifyCertificat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${generatedToken}`
+            },
+            body: JSON.stringify(certificateData)
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("qrImageCertificate").src = `data:image/png;base64,${data}`;
+            document.getElementById("formFeedback").innerText = "QR Code Generated Successfully!";
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            document.getElementById("formFeedback").innerText = "Failed to generate QR Code.";
+        });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+};
+```
+
+---
+
+### Redirect URL generation
+
+The backend generates Werify Point redirect URLs using `.env` variables:
+
+```javascript
+app.get('/config', (req, res) => {
+  res.json({
+      loginUrl: process.env.BASE_URL + '#' + process.env.LOGIN_URL,
+      registryUrl: process.env.BASE_URL + '#' + process.env.REGISTRY_URL,
+      certificateUrl: process.env.BASE_URL + '#' + process.env.CERTIFICATE_URL,
+      registryUrlAOC: process.env.BASE_URL + '#' + process.env.REGISTRY_URL_AOC,
+      registryUrlI2CAT: process.env.BASE_URL + '#' + process.env.REGISTRY_URL_I2CAT,
+  });
+});
+```
+
+---
+
+### Redirect to a Werify Point
+
+Once the URL is obtained from `/config`, you can redirect the user to a Werify Point you previously created:
+
+```javascript
+async function redirectToRegistry() {
+    const config = await getConfig();
+    window.location.href = config.registryUrl;
+}
+```
+
+---
+
+## 🧠 Notes
+
+- This app uses **vanilla JavaScript** to keep dependencies minimal.
+- Credentials are generated from a protected endpoint (`/client/generate-token`) using the keys defined in the environment.
+- The generated credentials are of type `WerifyCertificat` in this example.
+
+---
+
+## 📁 Important files
+
+- `.env.example`: includes all required parameters and inline documentation.
+- `docker-compose.yml`: launches the app and MongoDB.
+- `src/`: contains the frontend source code.
+
+---
+
+## 📬 Contact
+
+For more information about Werify or integration support, visit [https://werify.eu](https://werify.eu) or reach out to us.
+
